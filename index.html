@@ -65,6 +65,8 @@
   tbody tr:hover{background:rgba(18,30,51,.5)}
   .num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums}
   .pos{color:var(--emer)} .neg{color:var(--rose)} .dim{color:var(--ink-dim)}
+  /* score-to-par difficulty: over-par is hard (red), under-par is easy (green) — inverted vs SG */
+  .topar-hard{color:var(--rose)} .topar-easy{color:var(--emer)}
   .name{font-weight:600; color:var(--ink)}
   .wx{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:14px 0}
   .wx .day{background:var(--navy-900); border:1px solid var(--navy-700); border-radius:10px; padding:12px}
@@ -373,22 +375,22 @@
     <div class="card"><h3 class="font-display">Hardest holes</h3><div class="ch-note">post-reno avg score to par</div>
       <div class="t-wrap"><table><thead><tr><th class="l">H</th><th class="l">Par</th><th>Yds</th><th>&plusmn;Par</th><th>B&minus;</th><th>Bog+</th><th class="l">Driver</th></tr></thead>
       <tbody>
-<tr><td class="l"><b>18</b></td><td class="l dim">par 4</td><td class="num dim">480</td><td><span class="num pos">+0.304</span></td><td class="num">10%</td><td class="num">34%</td><td class="l dim">ARG</td></tr>
-<tr><td class="l"><b>10</b></td><td class="l dim">par 4</td><td class="num dim">470</td><td><span class="num pos">+0.251</span></td><td class="num">8%</td><td class="num">30%</td><td class="l dim">ARG</td></tr>
-<tr><td class="l"><b>17</b></td><td class="l dim">par 4</td><td class="num dim">489</td><td><span class="num pos">+0.248</span></td><td class="num">9%</td><td class="num">30%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>12</b></td><td class="l dim">par 3</td><td class="num dim">172</td><td><span class="num pos">+0.222</span></td><td class="num">12%</td><td class="num">27%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>16</b></td><td class="l dim">par 3</td><td class="num dim">199</td><td><span class="num pos">+0.204</span></td><td class="num">11%</td><td class="num">26%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>1</b></td><td class="l dim">par 4</td><td class="num dim">486</td><td><span class="num pos">+0.197</span></td><td class="num">10%</td><td class="num">27%</td><td class="l dim">PUTT</td></tr>
+<tr><td class="l"><b>18</b></td><td class="l dim">par 4</td><td class="num dim">480</td><td><span class="num topar-hard">+0.304</span></td><td class="num">10%</td><td class="num">34%</td><td class="l dim">ARG</td></tr>
+<tr><td class="l"><b>10</b></td><td class="l dim">par 4</td><td class="num dim">470</td><td><span class="num topar-hard">+0.251</span></td><td class="num">8%</td><td class="num">30%</td><td class="l dim">ARG</td></tr>
+<tr><td class="l"><b>17</b></td><td class="l dim">par 4</td><td class="num dim">489</td><td><span class="num topar-hard">+0.248</span></td><td class="num">9%</td><td class="num">30%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>12</b></td><td class="l dim">par 3</td><td class="num dim">172</td><td><span class="num topar-hard">+0.222</span></td><td class="num">12%</td><td class="num">27%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>16</b></td><td class="l dim">par 3</td><td class="num dim">199</td><td><span class="num topar-hard">+0.204</span></td><td class="num">11%</td><td class="num">26%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>1</b></td><td class="l dim">par 4</td><td class="num dim">486</td><td><span class="num topar-hard">+0.197</span></td><td class="num">10%</td><td class="num">27%</td><td class="l dim">PUTT</td></tr>
       </tbody></table></div>
     </div>
     <div class="card"><h3 class="font-display">Easiest holes</h3><div class="ch-note">the scoring opportunities</div>
       <div class="t-wrap"><table><thead><tr><th class="l">H</th><th class="l">Par</th><th>Yds</th><th>&plusmn;Par</th><th>B&minus;</th><th>Bog+</th><th class="l">Driver</th></tr></thead>
       <tbody>
-<tr><td class="l"><b>15</b></td><td class="l dim">par 5</td><td class="num dim">554</td><td><span class="num neg">-0.324</span></td><td class="num">43%</td><td class="num">11%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>7</b></td><td class="l dim">par 5</td><td class="num dim">582</td><td><span class="num neg">-0.222</span></td><td class="num">34%</td><td class="num">13%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>5</b></td><td class="l dim">par 5</td><td class="num dim">532</td><td><span class="num neg">-0.211</span></td><td class="num">34%</td><td class="num">12%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>11</b></td><td class="l dim">par 5</td><td class="num dim">588</td><td><span class="num neg">-0.089</span></td><td class="num">30%</td><td class="num">17%</td><td class="l dim">APP</td></tr>
-<tr><td class="l"><b>14</b></td><td class="l dim">par 4</td><td class="num dim">357</td><td><span class="num neg">-0.016</span></td><td class="num">24%</td><td class="num">19%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>15</b></td><td class="l dim">par 5</td><td class="num dim">554</td><td><span class="num topar-easy">-0.324</span></td><td class="num">43%</td><td class="num">11%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>7</b></td><td class="l dim">par 5</td><td class="num dim">582</td><td><span class="num topar-easy">-0.222</span></td><td class="num">34%</td><td class="num">13%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>5</b></td><td class="l dim">par 5</td><td class="num dim">532</td><td><span class="num topar-easy">-0.211</span></td><td class="num">34%</td><td class="num">12%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>11</b></td><td class="l dim">par 5</td><td class="num dim">588</td><td><span class="num topar-easy">-0.089</span></td><td class="num">30%</td><td class="num">17%</td><td class="l dim">APP</td></tr>
+<tr><td class="l"><b>14</b></td><td class="l dim">par 4</td><td class="num dim">357</td><td><span class="num topar-easy">-0.016</span></td><td class="num">24%</td><td class="num">19%</td><td class="l dim">APP</td></tr>
       </tbody></table></div>
     </div>
   </div>
