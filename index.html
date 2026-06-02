@@ -130,6 +130,11 @@
   .dc-rk{font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:var(--ink-soft); font-weight:600}
   .dc-tot{font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; fill:var(--ink-soft)}
   .dc-tlab{font-family:'IBM Plex Mono',monospace; font-size:7.5px; fill:var(--ink-dim); letter-spacing:.04em}
+  .cx-callout{margin:14px 0 18px}
+  .ctxscale{width:100%; max-width:520px; height:auto; display:block; margin:10px auto 6px}
+  .cx-week{font-family:'IBM Plex Mono',monospace; font-size:8.5px; font-weight:600; fill:var(--gold-300); letter-spacing:.09em}
+  .cx-bin{font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; fill:rgba(255,255,255,.95); letter-spacing:.11em; paint-order:stroke; stroke:rgba(8,15,28,.35); stroke-width:.5px}
+  .cx-ref{font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:var(--ink-soft); letter-spacing:.02em}
   /* ---- wind groups ---- */
   .windgroups{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:12px 0}
   .wgrp{background:var(--navy-900); border:1px solid var(--navy-700); border-radius:10px; padding:11px 13px; border-left-width:3px}
@@ -267,7 +272,8 @@
     .sgtrack{background:#e5e9ef} .diffsvg .dc-h{fill:#3a4658}
     table.stick1 thead th:first-child, table.stick1 tbody td:first-child,
     table.stick2 thead th, table.stick2 tbody td:first-child, table.stick2 tbody td:nth-child(2){position:static !important; background:transparent !important; box-shadow:none !important}
-    table.srt thead th{cursor:default} table.srt thead th.srt-active::after{content:""} .diffsvg .dc-rk,.diffsvg .dc-tot{fill:#10243f} .diffsvg .dc-tlab,.diffsvg .dc-p{fill:#5a6678}
+    table.srt thead th{cursor:default} table.srt thead th.srt-active::after{content:""}
+    .cx-week{fill:#9a7a1f} .cx-ref{fill:#3a4658} .cx-bin{fill:#10243f; stroke:none} .diffsvg .dc-rk,.diffsvg .dc-tot{fill:#10243f} .diffsvg .dc-tlab,.diffsvg .dc-p{fill:#5a6678}
   }
 </style>
 </head>
@@ -383,12 +389,15 @@
     </div>
   </div>
 
-  <div style="margin:10px 0 4px"><svg viewBox="0 0 380 78" class="diffsvg" preserveAspectRatio="xMidYMid meet" style="max-width:520px"><text x="6" y="10" class="dc-ax">Where this week sits in Muirfield&#8217;s weather &#183; 11 yrs of daytime toll</text><rect x="44.7" y="23" width="109.4" height="8" rx="2" fill="rgba(233,194,95,0.16)" stroke="rgba(233,194,95,0.8)" stroke-width="1"/><text x="99.4" y="20" text-anchor="middle" class="dc-tlab">this week 2.7&#8211;13.0</text><rect x="16.0" y="36" width="100.9" height="12" fill="rgba(16,185,129,0.80)"/><rect x="116.9" y="36" width="82.3" height="12" fill="rgba(132,204,22,0.68)"/><rect x="199.3" y="36" width="71.7" height="12" fill="rgba(148,163,184,0.55)"/><rect x="271.0" y="36" width="82.3" height="12" fill="rgba(239,68,68,0.60)"/><rect x="353.3" y="36" width="2.7" height="12" fill="rgba(220,38,38,0.70)"/><rect x="16.0" y="36" width="340.0" height="12" fill="none" stroke="#1d2c47" stroke-width="0.7"/><line x1="129.7" y1="48" x2="129.7" y2="55" stroke="#7e8aa0" stroke-width="1"/><text x="129.7" y="64" text-anchor="middle" class="dc-tlab">median 10.7</text><line x1="209.4" y1="48" x2="209.4" y2="55" stroke="#7e8aa0" stroke-width="1"/><text x="209.4" y="64" text-anchor="middle" class="dc-tlab">windy day &#183; p90 18</text><line x1="349.6" y1="48" x2="349.6" y2="55" stroke="#7e8aa0" stroke-width="1"/><text x="349.6" y="64" text-anchor="end" class="dc-tlab">max 31 (&#8217;19)</text></svg></div>
+  <div class="callout cx-callout">
+    <h3>Reality check &mdash; a mild week for Muirfield</h3>
+    <svg viewBox="0 0 360 98" class="ctxscale" preserveAspectRatio="xMidYMid meet"><text x="94.4" y="19" text-anchor="middle" class="cx-week">THIS WEEK&#8217;S FORECAST &#183; 2.7&#8211;13.0</text><rect x="40.4" y="26" width="108.2" height="10" rx="3" fill="rgba(233,194,95,0.22)" stroke="rgba(233,194,95,0.95)" stroke-width="1.3"/><circle cx="68.7" cy="31" r="2.1" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><circle cx="124.3" cy="31" r="2.1" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><rect x="12.0" y="44.0" width="99.8" height="22.0" fill="rgba(16,185,129,0.82)"/><text x="61.9" y="58.2" text-anchor="middle" class="cx-bin">CALM</text><rect x="111.8" y="44.0" width="81.4" height="22.0" fill="rgba(132,204,22,0.72)"/><text x="152.4" y="58.2" text-anchor="middle" class="cx-bin">MILD</text><rect x="193.1" y="44.0" width="70.9" height="22.0" fill="rgba(148,163,184,0.62)"/><text x="228.6" y="58.2" text-anchor="middle" class="cx-bin">MODERATE</text><rect x="264.0" y="44.0" width="81.4" height="22.0" fill="rgba(239,68,68,0.64)"/><text x="304.7" y="58.2" text-anchor="middle" class="cx-bin">WINDY</text><rect x="345.4" y="44.0" width="2.6" height="22.0" fill="rgba(220,38,38,0.74)"/><rect x="12.0" y="44.0" width="336.0" height="22.0" fill="none" stroke="#243349" stroke-width="0.8" rx="1.5"/><line x1="124.3" y1="66.0" x2="124.3" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="124.3" y="84.0" text-anchor="middle" class="cx-ref">median 10.7</text><line x1="203.1" y1="66.0" x2="203.1" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="203.1" y="84.0" text-anchor="middle" class="cx-ref">p90 &#183; 18</text><line x1="341.7" y1="66.0" x2="341.7" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="341.7" y="84.0" text-anchor="end" class="cx-ref">max 31 (&#8217;19)</text></svg>
+    <p style="margin-top:2px">Friday&rsquo;s 10.7 mean is a <b>dead-average</b> Muirfield day &mdash; literally the venue&rsquo;s 11-year median (gold dots = Thu 5.4 / Fri 10.7). Muirfield has played far harder (p90 18; a 31 in the 2019 storm), and Thursday sits bottom-decile calm. The draw tilts scoring at the margin, but <b>nobody&rsquo;s drawing a genuinely brutal Muirfield this week.</b></p>
+  </div>
 
   <ul class="narr">
     <li><b>Antecedent moisture is essentially nil.</b> A bone-dry tournament week on rebuilt sub-air greens means firm, repelling surfaces from the first tee shot &mdash; the opposite of last week&rsquo;s soaked Colonial. Distance control into the greens is everything.</li>
     <li><b>Friday is the swing day &mdash; but the draw nearly evens out.</b> Round-1 toll (5.4) roughly doubles to Round-2 (10.7) as the SW wind sets in. Under the standard PGA two-wave rotation a Thursday-AM tee time flips to Friday-PM (and vice versa), so the two halves of the draw are <b>Thu-AM / Fri-PM</b> &mdash; the week&rsquo;s calmest window (Thursday morning, toll ~3.5) bundled with its windiest (Friday afternoon, ~12) &mdash; versus <b>Thu-PM / Fri-AM</b>, moderate on both ends (~7 and ~9). Combined two-day exposure is almost identical (~8 either way) &mdash; the two halves land within ~0.3 toll of each other, effectively a coin flip, with the dead-calm Thursday morning on the Thu-AM / Fri-PM side just offsetting its windy Friday afternoon.</li>
-    <li><b>And it&rsquo;s a mild week by Muirfield&rsquo;s standards.</b> The venue&rsquo;s daytime toll runs a <b>10.7 median</b>, an 18 &ldquo;windy day&rdquo; (p90) and a 31 ceiling (the 2019 storm). This week peaks at just <b>13</b> (the 67th percentile) &mdash; Thursday is bottom-decile calm and Friday is a dead-average day for the course. The draw tilts it at the margin, but nobody&rsquo;s drawing a genuinely brutal Muirfield.</li>
     <li><b>Weekend storm + gust risk.</b> Saturday brings ~0.51&Prime; with gusts to 28 mph and Sunday stays breezy and cool. If the rain hits, it softens the greens for the closers; if it misses, a firm-and-windy weekend is a brutal separator.</li>
   </ul>
 </section>
