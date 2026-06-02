@@ -17,7 +17,7 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{background:var(--navy-950); color:var(--ink); font-family:'Lora',Georgia,serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  body{background:var(--navy-950); color:var(--ink); font-family:'Lora',Georgia,serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 22px 80px}
   .font-display{font-family:'Playfair Display',Georgia,serif}
   .mono{font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums}
@@ -132,6 +132,9 @@
   .dc-tlab{font-family:'IBM Plex Mono',monospace; font-size:7.5px; fill:var(--ink-dim); letter-spacing:.04em}
   .cx-callout{margin:14px 0 18px}
   .ctxscale{width:100%; max-width:520px; height:auto; display:block; margin:10px auto 6px}
+  .cards-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .cx-day{font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; fill:var(--gold-300); letter-spacing:.06em}
+  .boxes{color:var(--emer); font-size:12.5px; letter-spacing:1px}
   .cx-week{font-family:'IBM Plex Mono',monospace; font-size:8.5px; font-weight:600; fill:var(--gold-300); letter-spacing:.09em}
   .cx-bin{font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; fill:rgba(255,255,255,.95); letter-spacing:.11em; paint-order:stroke; stroke:rgba(8,15,28,.35); stroke-width:.5px}
   .cx-ref{font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:var(--ink-soft); letter-spacing:.02em}
@@ -236,6 +239,8 @@
   .ptkey{display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-dim); margin-top:8px}
   .ptkey b{color:var(--ink-soft)} .ptkey i{display:inline-block; width:9px; height:9px; border-radius:2px; margin:0 2px 0 5px; vertical-align:middle}
   @media (max-width:760px){
+    .cards-2{grid-template-columns:minmax(0,1fr)}
+    .cards-2 table{font-size:10px} .cards-2 thead th, .cards-2 tbody td{padding:4px 4px}
     .tiles{grid-template-columns:1fr 1fr} .wx{grid-template-columns:1fr 1fr}
     .hxgrid{grid-template-columns:1fr} .windgroups{grid-template-columns:1fr}
     .hero-logo{width:60px; height:60px; top:0} .hero-inner{padding-right:74px}
@@ -336,6 +341,12 @@
 
 <section>
   <div class="sec-head"><h2 class="font-display">Conditions &amp; Weather</h2><div class="note">forecast · Open-Meteo · Mon June 1</div></div>
+  <div class="callout cx-callout">
+    <h3>Reality check &mdash; calm start, windy weekend</h3>
+    <svg viewBox="0 0 360 96" class="ctxscale" preserveAspectRatio="xMidYMid meet"><rect x="44.6" y="28" width="182.7" height="8" rx="3" fill="rgba(233,194,95,0.16)" stroke="rgba(233,194,95,0.75)" stroke-width="1"/><text x="72.9" y="20" text-anchor="middle" class="cx-day">THU</text><line x1="72.9" y1="24" x2="72.9" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="72.9" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="123.3" y="20" text-anchor="middle" class="cx-day">FRI</text><line x1="123.3" y1="24" x2="123.3" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="123.3" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="149.5" y="20" text-anchor="middle" class="cx-day">SUN</text><line x1="149.5" y1="24" x2="149.5" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="149.5" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="215.7" y="20" text-anchor="middle" class="cx-day">SAT</text><line x1="215.7" y1="24" x2="215.7" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="215.7" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><rect x="12.0" y="46.0" width="99.8" height="22.0" fill="rgba(16,185,129,0.82)"/><text x="61.9" y="60.2" text-anchor="middle" class="cx-bin">CALM</text><rect x="111.8" y="46.0" width="81.4" height="22.0" fill="rgba(132,204,22,0.72)"/><text x="152.4" y="60.2" text-anchor="middle" class="cx-bin">MILD</text><rect x="193.1" y="46.0" width="70.9" height="22.0" fill="rgba(148,163,184,0.62)"/><text x="228.6" y="60.2" text-anchor="middle" class="cx-bin">MODERATE</text><rect x="264.0" y="46.0" width="81.4" height="22.0" fill="rgba(239,68,68,0.64)"/><text x="304.7" y="60.2" text-anchor="middle" class="cx-bin">WINDY</text><rect x="345.4" y="46.0" width="2.6" height="22.0" fill="rgba(220,38,38,0.74)"/><rect x="12.0" y="46.0" width="336.0" height="22.0" fill="none" stroke="#243349" stroke-width="0.8" rx="1.5"/><line x1="124.3" y1="68.0" x2="124.3" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="124.3" y="86.0" text-anchor="middle" class="cx-ref">median 10.7</text><line x1="203.1" y1="68.0" x2="203.1" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="203.1" y="86.0" text-anchor="middle" class="cx-ref">p90 &#183; 18</text><line x1="341.7" y1="68.0" x2="341.7" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="341.7" y="86.0" text-anchor="end" class="cx-ref">max 31 (&#8217;19)</text></svg>
+    <p style="margin-top:2px">Thursday opens <b>bottom-decile calm</b> and Friday is a dead-average Muirfield day (~10.7, the venue&rsquo;s 11-yr median) &mdash; but the wind builds into the weekend. <b>Saturday spikes to ~19</b>, a genuine top-10% day here (past the venue&rsquo;s p90), with Sunday holding above average (~13). The cut is benign; the real scoring test &mdash; and the separation &mdash; comes when it blows on the weekend.</p>
+  </div>
+
   <p class="lead">The defining fact is dryness. Open-Meteo logs <b>0.00&Prime; over the seven days before Thursday</b>, with the last meaningful rain (1.16&Prime;) eight days out and since baked off by a week of sun and breeze. Expect a fast, running, fully-defended Muirfield. The arc through the week: a benign, near-calm <b>Round&nbsp;1 Thursday</b>; a windier, warmer <b>Friday</b> (sustained 10&ndash;13 mph SW, gusts to 17); then the only real rain &mdash; and the strongest gusts &mdash; on the <b>weekend</b>.</p>
 
   <div class="wx">
@@ -389,12 +400,6 @@
     </div>
   </div>
 
-  <div class="callout cx-callout">
-    <h3>Reality check &mdash; a mild week for Muirfield</h3>
-    <svg viewBox="0 0 360 98" class="ctxscale" preserveAspectRatio="xMidYMid meet"><text x="94.4" y="19" text-anchor="middle" class="cx-week">THIS WEEK&#8217;S FORECAST &#183; 2.7&#8211;13.0</text><rect x="40.4" y="26" width="108.2" height="10" rx="3" fill="rgba(233,194,95,0.22)" stroke="rgba(233,194,95,0.95)" stroke-width="1.3"/><circle cx="68.7" cy="31" r="2.1" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><circle cx="124.3" cy="31" r="2.1" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><rect x="12.0" y="44.0" width="99.8" height="22.0" fill="rgba(16,185,129,0.82)"/><text x="61.9" y="58.2" text-anchor="middle" class="cx-bin">CALM</text><rect x="111.8" y="44.0" width="81.4" height="22.0" fill="rgba(132,204,22,0.72)"/><text x="152.4" y="58.2" text-anchor="middle" class="cx-bin">MILD</text><rect x="193.1" y="44.0" width="70.9" height="22.0" fill="rgba(148,163,184,0.62)"/><text x="228.6" y="58.2" text-anchor="middle" class="cx-bin">MODERATE</text><rect x="264.0" y="44.0" width="81.4" height="22.0" fill="rgba(239,68,68,0.64)"/><text x="304.7" y="58.2" text-anchor="middle" class="cx-bin">WINDY</text><rect x="345.4" y="44.0" width="2.6" height="22.0" fill="rgba(220,38,38,0.74)"/><rect x="12.0" y="44.0" width="336.0" height="22.0" fill="none" stroke="#243349" stroke-width="0.8" rx="1.5"/><line x1="124.3" y1="66.0" x2="124.3" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="124.3" y="84.0" text-anchor="middle" class="cx-ref">median 10.7</text><line x1="203.1" y1="66.0" x2="203.1" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="203.1" y="84.0" text-anchor="middle" class="cx-ref">p90 &#183; 18</text><line x1="341.7" y1="66.0" x2="341.7" y2="72.0" stroke="#8893a6" stroke-width="1.1"/><text x="341.7" y="84.0" text-anchor="end" class="cx-ref">max 31 (&#8217;19)</text></svg>
-    <p style="margin-top:2px">Friday&rsquo;s 10.7 mean is a <b>dead-average</b> Muirfield day &mdash; literally the venue&rsquo;s 11-year median (gold dots = Thu 5.4 / Fri 10.7). Muirfield has played far harder (p90 18; a 31 in the 2019 storm), and Thursday sits bottom-decile calm. The draw tilts scoring at the margin, but <b>nobody&rsquo;s drawing a genuinely brutal Muirfield this week.</b></p>
-  </div>
-
   <ul class="narr">
     <li><b>Antecedent moisture is essentially nil.</b> A bone-dry tournament week on rebuilt sub-air greens means firm, repelling surfaces from the first tee shot &mdash; the opposite of last week&rsquo;s soaked Colonial. Distance control into the greens is everything.</li>
     <li><b>Friday is the swing day &mdash; but the draw nearly evens out.</b> Round-1 toll (5.4) roughly doubles to Round-2 (10.7) as the SW wind sets in. Under the standard PGA two-wave rotation a Thursday-AM tee time flips to Friday-PM (and vice versa), so the two halves of the draw are <b>Thu-AM / Fri-PM</b> &mdash; the week&rsquo;s calmest window (Thursday morning, toll ~3.5) bundled with its windiest (Friday afternoon, ~12) &mdash; versus <b>Thu-PM / Fri-AM</b>, moderate on both ends (~7 and ~9). Combined two-day exposure is almost identical (~8 either way) &mdash; the two halves land within ~0.3 toll of each other, effectively a coin flip, with the dead-calm Thursday morning on the Thu-AM / Fri-PM side just offsetting its windy Friday afternoon.</li>
@@ -406,7 +411,7 @@
   <div class="sec-head"><h2 class="font-display">Second-Shot Golf — The Course</h2><div class="note">post-reno 2021&ndash;2025 · 29233 hole-rounds</div></div>
   <p class="lead">Muirfield Village&rsquo;s identity is unambiguous in the data: <b>SG:Approach is the dominant scoring skill</b>, carrying 42&ndash;48% of round-to-round variance in every post-reno edition, with the per-hole &ldquo;driver&rdquo; metric reading <span class="mono">app</span> on most holes. It plays a touch over par (birdie ~18%, bogey-or-worse ~21&ndash;23%), defended by a run of 470&ndash;490-yard par 4s and a vicious closing stretch. The release valve is the four par 5s. Hit your irons, take your medicine on the long 4s, and feast on 5, 7, 11 and 15.</p>
 
-  <div class="cards" style="grid-template-columns:1fr 1fr">
+  <div class="cards cards-2">
     <div class="card"><h3 class="font-display">Hardest holes</h3><div class="ch-note">post-reno avg score to par</div>
       <div class="t-wrap"><table><thead><tr><th class="l">H</th><th class="l">Par</th><th>Yds</th><th title="par 3: GIR off the tee &middot; par 4/5: fairways hit (2021&ndash;25)">GIR/FW</th><th>&plusmn;Par</th><th>B&minus;</th><th>Bog+</th><th class="l">Driver</th></tr></thead>
       <tbody>
@@ -437,21 +442,7 @@
 </section>
 
 <section>
-  <div class="sec-head"><h2 class="font-display">Who Wins at Post-Reno Muirfield</h2><div class="note">2021&ndash;2025 · five editions</div></div>
-  <p class="lead">A remarkably consistent fingerprint: elite ball-striking, led by the irons. Winning totals have ranged &minus;7 to &minus;13, and the made-field has bunched around par-plus &mdash; this is a survival test where the best second-shot player pulls clear.</p>
-
-  <div class="cards">
-    <div class="card"><h3 class="font-display">2025 — Scheffler</h3><div class="ch-note">&minus;10 · over Griffin · APP #1, T2G #1</div><p>Back-to-back. Led the field in approach <em>and</em> tee-to-green again; added ARG #3. The complete second-shot performance.</p></div>
-    <div class="card"><h3 class="font-display">2024 — Scheffler</h3><div class="ch-note">&minus;8 · over Morikawa · APP #1, T2G #1</div><p>First Muirfield title; pure ball-striking (OTT #12, APP #1, T2G #1). The blueprint the model now expects.</p></div>
-    <div class="card"><h3 class="font-display">2023 — McCarthy</h3><div class="ch-note">&minus;7 · over Scheffler · PUTT #1</div><p>The exception: a putting week (#1) in the toughest scoring year of the five. Proof that a hot flat-stick can override the iron premium &mdash; occasionally.</p></div>
-    <div class="card"><h3 class="font-display">2022 — Horschel</h3><div class="ch-note">&minus;13 · over Wise · T2G #1, ARG #2</div><p>Tee-to-green #1 with elite short game. Ball-striking plus scrambling on the firm greens.</p></div>
-    <div class="card"><h3 class="font-display">2021 — Cantlay</h3><div class="ch-note">&minus;13 · playoff over Morikawa · T2G #1</div><p>The renovation&rsquo;s debut champion led the field tee-to-green (APP #5). Still the #2 post-reno performer here behind Scheffler.</p></div>
-    <div class="card"><h3 class="font-display">The profile</h3><div class="ch-note">what it takes</div><p>Top-of-field <b>SG:T2G + SG:APP</b> is the highest-leverage combination. Distance alone hasn&rsquo;t separated anyone; a hot putter can steal it in a tough year, but the irons are the through-line.</p></div>
-  </div>
-</section>
-
-<section>
-  <div class="sec-head"><h2 class="font-display">Field &amp; Watch List</h2><div class="note">63 ranked &middot; heat-mapped per column &middot; Shot&nbsp;Q = blended 2026+Muirfield shot profile</div></div>
+  <div class="sec-head"><h2 class="font-display">Field &amp; Watch List</h2></div>
   <p class="lead">The board is read through three lenses: <b>DataGolf current true-SG</b> (form), this season&rsquo;s <b>Tile</b> (ball-striking floor+ceiling: the sum of a player&rsquo;s 20th- and 80th-percentile SG:ball-striking &mdash; a consistency-and-upside measure) and <b>consistency</b> (mean per-hole SG percentile across 2026), and a player&rsquo;s <b>post-reno Muirfield record</b>. The names that check all three are the bets; the ones with form but no venue fit are the fades. Every column is heat-mapped to its own range (greenest = field-best); <b>Shot&nbsp;Q</b> blends each player&rsquo;s 2026 shot profile (75%) with their post-reno Muirfield shot history (25%) into one field-relative percentile.</p>
 
   <div class="t-wrap"><table class="srt stick2">
@@ -522,7 +513,7 @@
 <tr><td class="l dim num">63</td><td class="l name">Lucas Glover</td><td style="background:rgba(239,68,68,0.58)"><span class="num">-0.33</span></td><td style="background:rgba(239,68,68,0.28)"><span class="num">+0.11</span><span class="dim"> #103</span></td><td style="background:rgba(239,68,68,0.34)"><span class="num">-0.03</span></td><td style="background:rgba(239,68,68,0.35)"><span class="num">-0.21</span></td><td style="background:rgba(239,68,68,0.58)"><span class="num">+0.04</span></td><td style="background:rgba(239,68,68,0.58)"><span class="num">48</span></td><td style="background:rgba(239,68,68,0.58)"><span class="num">0</span></td><td style="background:rgba(239,68,68,0.22)"><span class="num">-0.71</span></td><td class="num dim">5</td></tr>
     </tbody>
   </table></div>
-  <p class="lead" style="font-size:12.5px;margin-top:8px"><span class="dim">DG Tot/APP/OTT/Putt = DataGolf Top-150 (Current) true SG per round; APP shows field rank. &rsquo;26 Tile = season SG:ball-striking p20+p80. Consist = mean per-hole SG percentile (higher = steadier). Muir SG/rd = post-reno (2021&ndash;25) strokes-gained per round at Muirfield. Eight field members fall outside the DataGolf Top-150 and are shown via venue/season data only: Jackson Suber, Brandt Snedeker, Mark Hubbard, Tom Hoge, Billy Horschel, Nico Echavarria, Jhonattan Vegas, Brian Campbell.</span></p>
+  <p class="lead" style="font-size:12.5px;margin-top:8px"><span class="dim">DG Tot/APP/OTT/Putt = DataGolf Top-150 (Current) true SG per round; APP shows field rank. &rsquo;26 Tile = season SG:ball-striking p20+p80. Consist = mean per-hole SG percentile (higher = steadier). Muir SG/rd = post-reno (2021&ndash;25) strokes-gained per round at Muirfield. Eight field members fall outside the DataGolf Top-150 and are shown via venue/season data only: Jackson Suber, Brandt Snedeker, Mark Hubbard, Tom Hoge, Billy Horschel, Nico Echavarria, Jhonattan Vegas, Brian Campbell.</span> <span class="dim"><b>Shot&nbsp;Q</b> = each player&rsquo;s expected SG/round from their shot distribution (how often they play from each distance/lie bin &times; their skill there), blended 75% 2026 season + 25% post-reno Muirfield, then ranked vs the field. Every numeric column is heat-mapped to its own range (greenest = field-best).</span></p>
 
   <div class="callout">
     <h3>All three boxes checked</h3>
@@ -530,10 +521,10 @@
   </div>
 
   <div class="picks">
-<div class="pick"><div class="pn">Scottie Scheffler <span class="odds">all three boxes · defending champ</span></div><div class="pd">The most lopsided venue edge in the field. Back-to-back Memorial winner (2024 &minus;8, 2025 &minus;10), each time leading the field in <b>both SG:APP and SG:T2G</b>. His post-reno Muirfield line is absurd: <b>+3.44 SG/round, &minus;2.19 to par/round</b> across four starts, +2.42 of it on approach alone. DataGolf has him a full half-stroke clear of the field (+2.95/rd). On a second-shot course, the best iron player alive is the bet to beat.</div></div>
+<div class="pick"><div class="pn">Scottie Scheffler <span class="odds"><span class="boxes" title="elite approach + strong 2026 Tile/consistency + positive post-reno Muirfield record">&#9745;&#9745;&#9745;</span> defending champ</span></div><div class="pd">The most lopsided venue edge in the field. Back-to-back Memorial winner (2024 &minus;8, 2025 &minus;10), each time leading the field in <b>both SG:APP and SG:T2G</b>. His post-reno Muirfield line is absurd: <b>+3.44 SG/round, &minus;2.19 to par/round</b> across four starts, +2.42 of it on approach alone. DataGolf has him a full half-stroke clear of the field (+2.95/rd). On a second-shot course, the best iron player alive is the bet to beat.</div></div>
 <div class="pick"><div class="pn">Patrick Cantlay <span class="odds">venue horse · 2021 champ</span></div><div class="pd">Won here in 2021 (playoff over Morikawa) leading the field T2G. Quietly the #2 post-reno Muirfield performer behind Scheffler: <b>+1.97 SG/round, &minus;0.61 to par/round</b> over five starts. Approach-leaning game (APP/rd +1.10 here) is the exact profile the venue rewards; the putter is the only swing factor.</div></div>
-<div class="pick"><div class="pn">Xander Schauffele <span class="odds">all three boxes</span></div><div class="pd">Elite approach (DG SG:APP #14) and a deep, steady Muirfield book &mdash; <b>+1.37 SG/round</b> over five post-reno starts, +0.91 of it on irons. The kind of mistake-free ball-striker who racks up pars on the brutal 1/10/17/18 stretch and feasts on the par 5s.</div></div>
-<div class="pick"><div class="pn">Si Woo Kim <span class="odds">all three boxes</span></div><div class="pd">Under-the-radar triple-box fit: DG SG:APP #13, the field's quietly-strong <b>+1.58 SG/round</b> at post-reno Muirfield (5 starts), and a top-tier 2026 ball-striking Tile (+0.24). Profiles as a sneaky-good outright at a price.</div></div>
+<div class="pick"><div class="pn">Xander Schauffele <span class="odds"><span class="boxes" title="elite approach + strong 2026 Tile/consistency + positive post-reno Muirfield record">&#9745;&#9745;&#9745;</span></span></div><div class="pd">Elite approach (DG SG:APP #14) and a deep, steady Muirfield book &mdash; <b>+1.37 SG/round</b> over five post-reno starts, +0.91 of it on irons. The kind of mistake-free ball-striker who racks up pars on the brutal 1/10/17/18 stretch and feasts on the par 5s.</div></div>
+<div class="pick"><div class="pn">Si Woo Kim <span class="odds"><span class="boxes" title="elite approach + strong 2026 Tile/consistency + positive post-reno Muirfield record">&#9745;&#9745;&#9745;</span></span></div><div class="pd">Under-the-radar triple-box fit: DG SG:APP #13, the field's quietly-strong <b>+1.58 SG/round</b> at post-reno Muirfield (5 starts), and a top-tier 2026 ball-striking Tile (+0.24). Profiles as a sneaky-good outright at a price.</div></div>
 <div class="pick"><div class="pn">Matt Fitzpatrick <span class="odds">elite irons</span></div><div class="pd">The field's <b>#4-ranked approach player</b> (DG SG:APP +0.92) with a +0.78 SG/round Muirfield record and a top-five 2026 ball-striking Tile. Precision over power is his whole game &mdash; tailor-made for a venue where the irons decide it.</div></div>
 <div class="pick"><div class="pn">Shane Lowry <span class="odds">approach + grind</span></div><div class="pd">DG SG:APP #10 and a positive Muirfield ledger (+1.03 SG/round, 5 starts). Thrives in the wind that arrives Friday and lingers through the weekend; the kind of player who shrugs off a tough scoring setup.</div></div>
 <div class="pick"><div class="pn">Ludvig Åberg <span class="odds">ceiling play</span></div><div class="pd">The field's <b>#2 approach player</b> (DG SG:APP +1.00) and +2.09 DG total &mdash; only Scheffler is clearly better. Just two Muirfield starts but already +1.41 SG/round. If the irons are on, the ceiling is the trophy.</div></div>
