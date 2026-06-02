@@ -122,6 +122,14 @@
   .tab-btn:hover{color:var(--ink); border-color:var(--navy-600)}
   .tab-btn.active{color:var(--navy-950); background:var(--gold-400); border-color:var(--gold-400); font-weight:600}
   .tab-panel{display:none} .tab-panel.active{display:block}
+  .topnav{position:sticky; top:0; z-index:50; background:var(--navy-950); padding:8px 0 7px; margin-bottom:8px; border-bottom:1px solid var(--navy-700)}
+  .sec-nav{display:flex; gap:6px; overflow-x:auto; margin-top:8px; scrollbar-width:none; -webkit-overflow-scrolling:touch}
+  .sec-nav::-webkit-scrollbar{display:none}
+  .sec-chip{flex:0 0 auto; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); background:var(--navy-800); border:1px solid var(--navy-700); border-radius:999px; padding:4px 11px; cursor:pointer; white-space:nowrap}
+  .sec-chip:hover{color:var(--gold-300); border-color:var(--gold-500)}
+  .to-top{position:fixed; right:16px; bottom:16px; width:42px; height:42px; border-radius:50%; background:var(--gold-400); color:var(--navy-950); border:none; font-size:19px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.45); opacity:0; pointer-events:none; transition:opacity .2s; z-index:60}
+  .to-top.show{opacity:.93; pointer-events:auto}
+  .to-top:hover{opacity:1}
   /* ---- difficulty chart ---- */
   .diffsvg{width:100%; max-width:480px; height:auto; display:block; margin:6px auto}
   .dc-h{font-family:'IBM Plex Mono',monospace; font-size:11px; fill:var(--ink-soft); font-weight:600}
@@ -301,10 +309,13 @@
 
 <div class="wrap">
 
-<div class="tab-nav no-print">
+<div class="topnav no-print">
+<div class="tab-nav">
   <button class="tab-btn active" data-tab="preview">Preview</button>
   <button class="tab-btn" data-tab="holes">Hole-by-Hole</button>
   <button class="tab-btn" data-tab="pins">Pin Zones</button>
+</div>
+<div id="sec-nav" class="sec-nav"></div>
 </div>
 
 <div id="tab-preview" class="tab-panel active">
@@ -1025,6 +1036,40 @@
     fixAll(); window.addEventListener('resize', fixAll);
     if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fixAll); }
   })();
+
+  // ---- section nav + back-to-top ----
+  document.addEventListener('DOMContentLoaded', function(){
+    var nav = document.getElementById('sec-nav');
+    var topnav = document.querySelector('.topnav');
+    function shortLabel(t){ t = (t||'').trim(); var i = t.indexOf('\u2014'); return (i>0 ? t.slice(0,i) : t).trim(); }
+    function buildSecNav(){
+      if(!nav) return;
+      nav.innerHTML = '';
+      var panel = document.querySelector('.tab-panel.active'); if(!panel) return;
+      var heads = panel.querySelectorAll('h2.font-display');
+      Array.prototype.forEach.call(heads, function(h){
+        var chip = document.createElement('button');
+        chip.className = 'sec-chip';
+        chip.textContent = shortLabel(h.textContent);
+        chip.addEventListener('click', function(){
+          var off = (topnav ? topnav.offsetHeight : 64) + 10;
+          var y = h.getBoundingClientRect().top + window.pageYOffset - off;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        });
+        nav.appendChild(chip);
+      });
+    }
+    buildSecNav();
+    Array.prototype.forEach.call(document.querySelectorAll('.tab-btn'), function(b){
+      b.addEventListener('click', function(){ setTimeout(buildSecNav, 0); });
+    });
+    var toTop = document.getElementById('to-top');
+    if(toTop){
+      window.addEventListener('scroll', function(){ toTop.classList.toggle('show', window.pageYOffset > 480); }, { passive: true });
+      toTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
+  });
 </script>
+<button id="to-top" class="to-top no-print" aria-label="Back to top">&#8593;</button>
 </body>
 </html>
