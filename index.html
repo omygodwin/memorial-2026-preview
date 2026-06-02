@@ -80,12 +80,29 @@
   .mtag{font-size:8.5px; color:var(--ink-dim); letter-spacing:.02em}
   .name{font-weight:600; color:var(--ink)}
   .wx{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:14px 0}
-  .wx .day{background:var(--navy-900); border:1px solid var(--navy-700); border-radius:10px; padding:12px}
-  .wx .dow{font-family:'Playfair Display',serif; font-size:16px; font-weight:700}
-  .wx .dt{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-dim); margin-bottom:8px}
-  .wx .row{display:flex; justify-content:space-between; font-size:12px; padding:2px 0}
-  .wx .row span:first-child{color:var(--ink-dim)}
-  .wx .row span:last-child{font-family:'IBM Plex Mono',monospace}
+  .wx .day{background:var(--navy-900); border:1px solid var(--navy-700); border-radius:12px; padding:11px 11px 0; display:flex; flex-direction:column; overflow:hidden}
+  .fc-top{display:flex; justify-content:space-between; align-items:flex-start; gap:6px}
+  .fc-dow{font-family:'Playfair Display',serif; font-size:15px; font-weight:700; line-height:1.05}
+  .fc-rd{font-family:'IBM Plex Mono',monospace; font-size:8.5px; color:var(--gold-300); border:1px solid rgba(233,194,95,.4); border-radius:4px; padding:1px 3px; margin-left:4px; vertical-align:2px}
+  .fc-dt{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--ink-dim); margin-top:3px}
+  .fc-ico{width:32px; height:32px; flex:none}
+  .fc-temp{display:flex; align-items:baseline; gap:5px; margin-top:9px}
+  .fc-hi{font-family:'IBM Plex Mono',monospace; font-size:21px; font-weight:600}
+  .fc-lo{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-dim)}
+  .fc-deg{font-size:11px; color:var(--ink-dim)}
+  .fc-track{position:relative; height:5px; border-radius:3px; background:var(--navy-700); margin:5px 0 9px}
+  .fc-seg{position:absolute; top:0; bottom:0; border-radius:3px}
+  .fc-gust{position:absolute; top:-2.5px; width:2.5px; height:10px; border-radius:1px}
+  .fc-met{display:flex; justify-content:space-between; align-items:baseline; gap:6px}
+  .fc-lbl{font-family:'IBM Plex Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-dim)}
+  .fc-val{font-family:'IBM Plex Mono',monospace; font-size:12px}
+  .fc-val .d{color:var(--ink-dim); font-size:10px}
+  .fc-toll{margin:10px -11px 0; padding:7px 11px 8px; display:flex; align-items:center; gap:6px}
+  .fc-toll-lbl{font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:.1em; color:rgba(8,18,12,.6)}
+  .fc-toll-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.04em; color:rgba(8,18,12,.72)}
+  .fc-toll-v{font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:700; color:#0a140d; margin-left:auto}
+  .fc-key{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--ink-dim); margin:2px 0 20px; line-height:1.6}
+  .fc-key i{display:inline-block; width:9px; height:9px; border-radius:2px; vertical-align:middle; margin:0 2px 0 4px}
   .strip{margin:8px 0 20px}
   .strip .label{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px}
   .bars{display:flex; gap:4px; align-items:flex-end; height:110px; padding:6px 0; border-bottom:1px solid var(--navy-700)}
@@ -293,7 +310,7 @@
     .sec-head,.foot{border-color:#cdd5e0}
     .tile,.card,.wx .day,.callout,.pick,.absent{background:#f7f8fa; border-color:#d4dae3; color:#16202e}
     .tile .v{color:#10243f} .tile .d,.card .ch-note,.lead{color:#3a4658}
-    .bars{border-color:#cdd5e0}
+    .bars{border-color:#cdd5e0} .fc-track{background:#dce2ea}
     thead th{color:#5a6678; border-color:#cdd5e0}
     tbody td{border-color:#e5e9ef}
     .name,.pick .pn{color:#10243f}
@@ -391,27 +408,56 @@
   <p class="lead">The defining fact is dryness. Open-Meteo logs <b>0.00&Prime; over the seven days before Thursday</b>, with the last meaningful rain (1.16&Prime;) eight days out and since baked off by a week of sun and breeze. Expect a fast, running, fully-defended Muirfield. The arc through the week: a benign, near-calm <b>Round&nbsp;1 Thursday</b>; a windier, warmer <b>Friday</b> (sustained 10&ndash;13 mph SW, gusts to 17); then the only real rain &mdash; and the strongest gusts &mdash; on the <b>weekend</b>.</p>
 
   <div class="wx">
-    <div class="day"><div class="dow">Thu · R1</div><div class="dt">Jun 4 · 7a&ndash;7p</div>
-      <div class="row"><span>Temp</span><span>55&ndash;79&deg;F</span></div>
-      <div class="row"><span>Wind</span><span>2&ndash;8 SW (g10)</span></div>
-      <div class="row"><span>Precip</span><span>0.00&Prime;</span></div>
-      <div class="row"><span>Toll</span><span>5.4 (calm)</span></div></div>
-    <div class="day"><div class="dow">Fri · R2</div><div class="dt">Jun 5</div>
-      <div class="row"><span>Temp</span><span>60&ndash;81&deg;F</span></div>
-      <div class="row"><span>Wind</span><span>10&ndash;13 SW (g17)</span></div>
-      <div class="row"><span>Precip</span><span>0.00&Prime;</span></div>
-      <div class="row"><span>Toll</span><span>10.7 (mild)</span></div></div>
-    <div class="day"><div class="dow">Sat · R3</div><div class="dt">Jun 6</div>
-      <div class="row"><span>Temp</span><span>64&ndash;74&deg;F</span></div>
-      <div class="row"><span>Wind</span><span>12 (g28)</span></div>
-      <div class="row"><span>Precip</span><span>0.51&Prime; · 33%</span></div>
-      <div class="row"><span>Toll</span><span>elevated</span></div></div>
-    <div class="day"><div class="dow">Sun · R4</div><div class="dt">Jun 7</div>
-      <div class="row"><span>Temp</span><span>61&ndash;69&deg;F</span></div>
-      <div class="row"><span>Wind</span><span>10 (g26)</span></div>
-      <div class="row"><span>Precip</span><span>0.09&Prime; · 33%</span></div>
-      <div class="row"><span>Toll</span><span>elevated</span></div></div>
+    <div class="day fc">
+      <div class="fc-top">
+        <div><div class="fc-dow">Thu<span class="fc-rd">R1</span></div><div class="fc-dt">Jun 4 · 7a–7p</div></div>
+        <svg class="fc-ico" viewBox="0 0 40 40" aria-hidden="true"><g stroke="#e9c25f" stroke-width="2.3" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="36"/><line x1="4" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="36" y2="20"/><line x1="8.5" y1="8.5" x2="12" y2="12"/><line x1="28" y1="28" x2="31.5" y2="31.5"/><line x1="31.5" y1="8.5" x2="28" y2="12"/><line x1="12" y1="28" x2="8.5" y2="31.5"/></g><circle cx="20" cy="20" r="7.2" fill="#e9c25f"/></svg>
+      </div>
+      <div class="fc-temp"><span class="fc-hi">79<span class="fc-deg">°</span></span><span class="fc-lo">55°</span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:14.3%; right:17.1%; background:linear-gradient(90deg,#5b9bd5,#f0a93a)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Wind</span><span class="fc-val">2–8 <span class="d">SW · g10</span></span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:0; width:26.7%; background:rgba(96,165,214,.85)"></span><span class="fc-gust" style="left:33.3%; background:rgba(148,163,184,.92)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Rain</span><span class="fc-val">0.00″</span></div>
+      <div class="fc-toll" style="background:rgba(16,185,129,.92)"><span class="fc-toll-lbl">TOLL</span><span class="fc-toll-tag">CALM</span><span class="fc-toll-v">5.4</span></div>
+    </div>
+    <div class="day fc">
+      <div class="fc-top">
+        <div><div class="fc-dow">Fri<span class="fc-rd">R2</span></div><div class="fc-dt">Jun 5</div></div>
+        <svg class="fc-ico" viewBox="0 0 40 40" aria-hidden="true"><g stroke="#e9c25f" stroke-width="2.3" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="9"/><line x1="20" y1="31" x2="20" y2="36"/><line x1="4" y1="20" x2="9" y2="20"/><line x1="31" y1="20" x2="36" y2="20"/><line x1="8.5" y1="8.5" x2="12" y2="12"/><line x1="28" y1="28" x2="31.5" y2="31.5"/><line x1="31.5" y1="8.5" x2="28" y2="12"/><line x1="12" y1="28" x2="8.5" y2="31.5"/></g><circle cx="20" cy="20" r="7.2" fill="#e9c25f"/></svg>
+      </div>
+      <div class="fc-temp"><span class="fc-hi">81<span class="fc-deg">°</span></span><span class="fc-lo">60°</span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:28.6%; right:11.4%; background:linear-gradient(90deg,#5b9bd5,#f0a93a)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Wind</span><span class="fc-val">10–13 <span class="d">SW · g17</span></span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:0; width:43.3%; background:rgba(96,165,214,.85)"></span><span class="fc-gust" style="left:56.7%; background:rgba(148,163,184,.92)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Rain</span><span class="fc-val">0.00″</span></div>
+      <div class="fc-toll" style="background:rgba(132,204,22,.90)"><span class="fc-toll-lbl">TOLL</span><span class="fc-toll-tag">MILD</span><span class="fc-toll-v">10.7</span></div>
+    </div>
+    <div class="day fc">
+      <div class="fc-top">
+        <div><div class="fc-dow">Sat<span class="fc-rd">R3</span></div><div class="fc-dt">Jun 6</div></div>
+        <svg class="fc-ico" viewBox="0 0 40 40" aria-hidden="true"><g fill="#9fb1c9"><circle cx="15" cy="17" r="6.5"/><circle cx="24" cy="15" r="8"/><circle cx="28.5" cy="20" r="6"/><rect x="12" y="17" width="18" height="8" rx="4"/></g><g stroke="#5b9bd5" stroke-width="2.3" stroke-linecap="round"><line x1="15" y1="29" x2="13" y2="35"/><line x1="21" y1="29" x2="19" y2="35"/><line x1="27" y1="29" x2="25" y2="35"/></g></svg>
+      </div>
+      <div class="fc-temp"><span class="fc-hi">74<span class="fc-deg">°</span></span><span class="fc-lo">64°</span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:40.0%; right:31.4%; background:linear-gradient(90deg,#5b9bd5,#f0a93a)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Wind</span><span class="fc-val">12 <span class="d">g28</span></span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:0; width:40.0%; background:rgba(96,165,214,.85)"></span><span class="fc-gust" style="left:93.3%; background:rgba(239,68,68,.95)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Rain</span><span class="fc-val" style="color:#88b6e6">0.51″ <span class="d">· 33%</span></span></div>
+      <div class="fc-toll" style="background:rgba(148,163,184,.85)"><span class="fc-toll-lbl">TOLL</span><span class="fc-toll-tag">MODERATE</span><span class="fc-toll-v">19</span></div>
+    </div>
+    <div class="day fc">
+      <div class="fc-top">
+        <div><div class="fc-dow">Sun<span class="fc-rd">R4</span></div><div class="fc-dt">Jun 7</div></div>
+        <svg class="fc-ico" viewBox="0 0 40 40" aria-hidden="true"><g fill="#9fb1c9"><circle cx="15" cy="17" r="6.5"/><circle cx="24" cy="15" r="8"/><circle cx="28.5" cy="20" r="6"/><rect x="12" y="17" width="18" height="8" rx="4"/></g><g stroke="#7fb0de" stroke-width="2.1" stroke-linecap="round"><line x1="18" y1="30" x2="16.5" y2="34"/><line x1="25" y1="30" x2="23.5" y2="34"/></g></svg>
+      </div>
+      <div class="fc-temp"><span class="fc-hi">69<span class="fc-deg">°</span></span><span class="fc-lo">61°</span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:31.4%; right:45.7%; background:linear-gradient(90deg,#5b9bd5,#f0a93a)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Wind</span><span class="fc-val">10 <span class="d">g26</span></span></div>
+      <div class="fc-track"><span class="fc-seg" style="left:0; width:33.3%; background:rgba(96,165,214,.85)"></span><span class="fc-gust" style="left:86.7%; background:rgba(239,68,68,.95)"></span></div>
+      <div class="fc-met"><span class="fc-lbl">Rain</span><span class="fc-val" style="color:#88b6e6">0.09″ <span class="d">· 33%</span></span></div>
+      <div class="fc-toll" style="background:rgba(132,204,22,.90)"><span class="fc-toll-lbl">TOLL</span><span class="fc-toll-tag">MILD</span><span class="fc-toll-v">13</span></div>
+    </div>
   </div>
+    <div class="fc-key">Shared scales across days — temp band 50–85°F  ·  wind fill = sustained, tick = gust (<i style="background:rgba(239,68,68,.95)"></i>red ≥ 25 mph)  ·  Toll color = canonical bin (<i style="background:rgba(16,185,129,.92)"></i>calm <i style="background:rgba(132,204,22,.9)"></i>mild <i style="background:rgba(148,163,184,.85)"></i>moderate)</div>
 
   <div class="strip">
     <div class="label">Round 1 (Thursday) hour-by-hour playability (Open-Meteo &times; toll model, higher = harder). Dead calm at dawn; the heat and a building SW breeze lift the late afternoon &mdash; the morning wave gets the softest scoring window of the week.</div>
