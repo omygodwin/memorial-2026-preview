@@ -1567,20 +1567,6 @@
       toTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
     }
     var __prog = document.getElementById('read-prog');
-    function __navScrollLeft(el, to){
-      to = Math.max(0, Math.min(to, el.scrollWidth - el.clientWidth));
-      var from = el.scrollLeft, d = to - from;
-      if(Math.abs(d) < 4) return;
-      var start = null, dur = 280;
-      function step(ts){
-        if(start === null) start = ts;
-        var p = Math.min(1, (ts - start) / dur);
-        var e = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
-        el.scrollLeft = from + d * e;
-        if(p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
     function __onScroll(){
       var st = window.pageYOffset || document.documentElement.scrollTop || 0;
       if(__prog){ var mx = document.documentElement.scrollHeight - window.innerHeight; __prog.style.width = (mx > 0 ? Math.min(100, st / mx * 100) : 0) + '%'; }
@@ -1592,7 +1578,7 @@
           var __ac = secList[cur].chip, __nr = nav.getBoundingClientRect(), __cr = __ac.getBoundingClientRect();
           var __tgt = nav.scrollLeft + (__cr.left + __cr.width/2) - (__nr.left + __nr.width/2);
           __tgt = Math.max(0, Math.min(__tgt, nav.scrollWidth - nav.clientWidth));
-          __navScrollLeft(nav, __tgt);
+          if(Math.abs(__tgt - nav.scrollLeft) > 2) nav.scrollLeft = __tgt;
         }
         __lastCur = cur;
       }
