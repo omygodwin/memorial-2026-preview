@@ -1538,11 +1538,11 @@
   document.addEventListener('DOMContentLoaded', function(){
     var nav = document.getElementById('sec-nav');
     var topnav = document.querySelector('.topnav');
-    var secList = [];
+    var secList = []; var __lastCur = -1;
     function shortLabel(t){ t = (t||'').trim(); var i = t.indexOf('\u2014'); return (i>0 ? t.slice(0,i) : t).trim(); }
     function buildSecNav(){
       if(!nav) return;
-      nav.innerHTML = ''; secList.length = 0;
+      nav.innerHTML = ''; secList.length = 0; __lastCur = -1;
       var panel = document.querySelector('.tab-panel.active'); if(!panel) return;
       var heads = panel.querySelectorAll('h2.font-display');
       Array.prototype.forEach.call(heads, function(h){
@@ -1574,6 +1574,13 @@
         var off = (topnav ? topnav.offsetHeight : 64) + 48, cur = -1, i;
         for(i = 0; i < secList.length; i++){ if(secList[i].h.getBoundingClientRect().top - off <= 0) cur = i; }
         for(i = 0; i < secList.length; i++){ secList[i].chip.classList.toggle('active', i === cur); }
+        if(cur >= 0 && cur !== __lastCur && nav){
+          var __ac = secList[cur].chip, __nr = nav.getBoundingClientRect(), __cr = __ac.getBoundingClientRect();
+          var __tgt = nav.scrollLeft + (__cr.left + __cr.width/2) - (__nr.left + __nr.width/2);
+          __tgt = Math.max(0, Math.min(__tgt, nav.scrollWidth - nav.clientWidth));
+          if(Math.abs(__tgt - nav.scrollLeft) > 4){ nav.scrollTo({ left: __tgt, behavior: 'smooth' }); }
+        }
+        __lastCur = cur;
       }
     }
     window.addEventListener('scroll', __onScroll, { passive: true });
