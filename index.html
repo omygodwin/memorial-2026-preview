@@ -415,6 +415,44 @@
   table.cardify td .num{font-family:'IBM Plex Mono',monospace}
 }
 
+
+/* ===== Collapsible sections ===== */
+.csec .sec-head{cursor:pointer; user-select:none}
+.csec-chev{color:var(--ink-dim); transition:transform .2s ease; flex:0 0 auto; margin-left:8px}
+.csec.collapsed .csec-chev{transform:rotate(-90deg)}
+.csec-summary{display:none; color:var(--ink-soft); font-size:13px; line-height:1.42; margin:-2px 0 0}
+.csec.collapsed .csec-summary{display:block}
+.csec.collapsed > *:not(.sec-head):not(.csec-summary){display:none !important}
+.csec.collapsed{padding-bottom:2px}
+.csec.collapsed .sec-head{margin-bottom:8px; border-bottom-color:transparent}
+.csec-allbar{display:flex; justify-content:flex-end; margin:0 0 14px}
+.csec-all{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-dim); background:var(--navy-800); border:1px solid var(--navy-700); border-radius:999px; padding:5px 12px; cursor:pointer}
+.csec-all:hover{color:var(--ink-soft); border-color:var(--navy-600)}
+
+/* ===== Player search ===== */
+.psearch-fab{position:fixed; left:16px; bottom:18px; z-index:60; width:46px; height:46px; border-radius:50%; background:var(--gold-500); color:var(--navy-950); border:0; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.45); cursor:pointer}
+.psearch-fab:hover{background:var(--gold-400)}
+.psearch-overlay{position:fixed; inset:0; z-index:120; background:rgba(4,8,16,.72); display:flex; align-items:flex-start; justify-content:center; padding:8vh 12px 12px}
+.psearch-box{width:100%; max-width:460px; max-height:82vh; background:var(--navy-900); border:1px solid var(--navy-700); border-radius:14px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.psearch-top{display:flex; align-items:center; gap:8px; padding:11px 12px; border-bottom:1px solid var(--navy-700); color:var(--ink-dim)}
+#psearch-input{flex:1; background:transparent; border:0; outline:0; color:var(--ink); font-family:'Lora',serif; font-size:16px}
+#psearch-input::placeholder{color:var(--ink-dim)}
+#psearch-close{background:transparent; border:0; color:var(--ink-dim); font-size:16px; cursor:pointer; padding:2px 6px}
+.psearch-list{overflow-y:auto; padding:6px}
+.psr{display:block; width:100%; text-align:left; background:transparent; border:0; border-radius:8px; padding:9px 11px; color:var(--ink); font-family:'Lora',serif; font-size:14.5px; cursor:pointer}
+.psr:hover{background:var(--navy-800)}
+.psr-empty{padding:14px; color:var(--ink-dim); font-size:13px}
+.psearch-card{overflow-y:auto; padding:4px 12px 14px}
+.psc-name{font-family:'Playfair Display',serif; font-weight:700; font-size:20px; color:var(--ink); padding:10px 0 8px; border-bottom:1px solid var(--navy-700); margin-bottom:9px}
+.psc-cat{margin-bottom:12px}
+.psc-cat-t{font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.05em; color:var(--gold-300); margin-bottom:5px}
+.psc-stats{display:grid; grid-template-columns:1fr 1fr; gap:5px}
+.psc-stat{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:5px 9px; border-radius:7px; background:var(--navy-800); border:1px solid var(--navy-700)}
+.psc-l{font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; color:var(--ink-dim)}
+.psc-v{font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--ink); font-weight:600}
+.psc-back{margin-top:4px; background:var(--navy-800); border:1px solid var(--navy-700); color:var(--ink-soft); border-radius:999px; padding:7px 14px; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer}
+@media (max-width:560px){ .psearch-overlay{padding:4vh 8px 8px} .psearch-box{max-height:90vh} }
+
 </style>
 </head>
 <body>
@@ -466,8 +504,11 @@
 </section>
 
 
-<section>
-  <div class="sec-head"><h2 class="font-display">The Setup</h2></div>
+<div class="csec-allbar"><button id="csec-all" class="csec-all">&#9662; Expand all</button></div>
+
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">The Setup</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">The 50th Memorial &mdash; firm, dry, no-cut. The Tour&rsquo;s hardest second-shot test, and Scheffler&rsquo;s house.</div>
   <p class="lead">Jack Nicklaus&rsquo;s Muirfield Village hosts the 50th Memorial as a <b>no-cut, 72-player signature event</b> ($20M, 43 of the top 50 in the world) &mdash; and it arrives <b>firm and dry</b>. Just 1.16&Prime; of rain fell here on May 27, and the seven days before Thursday are forecast bone-dry, so the post-renovation greens &mdash; rebuilt firm-and-fast in 2020 &mdash; will be at their teeth-baring best. This is the most demanding second-shot test on the PGA Tour calendar, and the analytics scream one name: <b>Scottie Scheffler</b>, who has won the last two Memorials and posts a barely-believable <b>+3.44 SG/round</b> here since the renovation. Round 1 Thursday is the soft spot &mdash; calm and benign &mdash; and Sunday closes nearly as gently; the one real test is a <b>windy Saturday</b>, gusting past 30, when the firm course bares its teeth.</p>
 
   <div class="tiles">
@@ -485,8 +526,9 @@
   </ul>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">The Nicklaus Renovation — Why We Weight 2021&ndash;Present</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">The Nicklaus Renovation — Why We Weight 2021&ndash;Present</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Why we weight 2021&ndash;present: Nicklaus rebuilt all 18 greens firm-and-fast in 2020.</div>
   <p class="lead">Jack Nicklaus closed his masterpiece in July 2020 (right after the COVID-era double-header) for a ~$10M overhaul, and the &ldquo;new&rdquo; Muirfield Village debuted at the 2021 Memorial. <b>All 18 greens were rebuilt</b> with sub-air heating/cooling for firmer, faster surfaces; bunkers were reshaped, tees leveled and lengthened, fairways re-grassed and the irrigation rebuilt &mdash; with changes on 16 of 18 holes and a virtually-new 15th. The analysis therefore treats <b>2021 as the layout cutoff</b>: pin-zone priors and per-hole scoring forecasts use the five post-reno editions, while the older 2015&ndash;2020 Tourcast data (still archived) is held back unless explicitly toggled in.</p>
 
   <div class="cards">
@@ -496,8 +538,9 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Conditions &amp; Weather</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Conditions &amp; Weather</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Calm Thursday, windy Saturday, calmest Sunday &mdash; Friday afternoon stiffens, so the early draw wins.</div>
   <div class="callout cx-callout">
     <h3>Reality check &mdash; calm bookends, one windy Saturday</h3>
     <svg viewBox="0 0 360 96" class="ctxscale" preserveAspectRatio="xMidYMid meet"><rect x="75.4" y="28" width="138.5" height="8" rx="3" fill="rgba(233,194,95,0.16)" stroke="rgba(233,194,95,0.75)" stroke-width="1"/><text x="86.5" y="20" text-anchor="middle" class="cx-day">THU</text><line x1="86.5" y1="24" x2="86.5" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="86.5" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="75.7" y="20" text-anchor="middle" class="cx-day">SUN</text><line x1="75.7" y1="24" x2="75.7" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="75.7" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="184.8" y="20" text-anchor="middle" class="cx-day">FRI</text><line x1="184.8" y1="24" x2="184.8" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="184.8" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><text x="218.2" y="20" text-anchor="middle" class="cx-day">SAT</text><line x1="218.2" y1="24" x2="218.2" y2="46.0" stroke="rgba(233,194,95,0.5)" stroke-width="0.8"/><circle cx="218.2" cy="32" r="2.4" fill="#e9c25f" stroke="#1a1205" stroke-width="0.5"/><rect x="12.0" y="46.0" width="99.8" height="22.0" fill="rgba(16,185,129,0.82)"/><text x="61.9" y="60.2" text-anchor="middle" class="cx-bin">CALM</text><rect x="111.8" y="46.0" width="81.4" height="22.0" fill="rgba(132,204,22,0.72)"/><text x="152.4" y="60.2" text-anchor="middle" class="cx-bin">MILD</text><rect x="193.1" y="46.0" width="70.9" height="22.0" fill="rgba(148,163,184,0.62)"/><text x="228.6" y="60.2" text-anchor="middle" class="cx-bin">MODERATE</text><rect x="264.0" y="46.0" width="81.4" height="22.0" fill="rgba(239,68,68,0.64)"/><text x="304.7" y="60.2" text-anchor="middle" class="cx-bin">WINDY</text><rect x="345.4" y="46.0" width="2.6" height="22.0" fill="rgba(220,38,38,0.74)"/><rect x="12.0" y="46.0" width="336.0" height="22.0" fill="none" stroke="#243349" stroke-width="0.8" rx="1.5"/><line x1="124.3" y1="68.0" x2="124.3" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="124.3" y="86.0" text-anchor="middle" class="cx-ref">median 10.7</text><line x1="203.1" y1="68.0" x2="203.1" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="203.1" y="86.0" text-anchor="middle" class="cx-ref">p90 &#183; 18</text><line x1="341.7" y1="68.0" x2="341.7" y2="74.0" stroke="#8893a6" stroke-width="1.1"/><text x="341.7" y="86.0" text-anchor="end" class="cx-ref">max 31 (&#8217;19)</text></svg>
@@ -544,8 +587,9 @@
   </ul>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Second-Shot Golf — The Course</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Second-Shot Golf — The Course</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Widest fairways, tightest greens. 68% of approaches from 150+, where the week is decided.</div>
   <p class="lead">Muirfield Village&rsquo;s identity is unambiguous in the data: <b>SG:Approach is the dominant scoring skill</b>, carrying 42&ndash;48% of round-to-round variance in every post-reno edition, with the per-hole &ldquo;driver&rdquo; metric reading <span class="mono">app</span> on most holes. It plays a touch over par (birdie ~18%, bogey-or-worse ~21&ndash;23%), defended by a run of 470&ndash;490-yard par 4s and a vicious closing stretch. The four par 5s are where the birdies hide &mdash; though, as the read below shows, they&rsquo;re the Tour&rsquo;s stingiest set, so you earn them. Hit your irons; take your medicine on the long 4s.</p>
 
   <div class="callout">
@@ -617,12 +661,13 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Field &amp; Watch List</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Field &amp; Watch List</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">The 72-man field &mdash; the picks that check every box, the fades to avoid.</div>
   <div class="field-update"><b>Field update &middot; June&nbsp;3 (night before R1):</b> Jake Knapp withdrew; first alternate <b>Sudarshan Yellamaraju</b> (#50 below) is in &mdash; field holds at 72.</div>
   <p class="lead">The board is read through three lenses: <b>DataGolf current true-SG</b> (form), this season&rsquo;s <b>Tile</b> (ball-striking floor+ceiling: the sum of a player&rsquo;s 20th- and 80th-percentile SG:ball-striking &mdash; a consistency-and-upside measure) and <b>consistency</b> (mean per-hole SG percentile across 2026), and a player&rsquo;s <b>post-reno Muirfield record</b>. The names that check all three are the bets; the ones with form but no venue fit are the fades. Every column is heat-mapped to its own range (greenest = field-best); <b>Shot&nbsp;Q</b> blends each player&rsquo;s 2026 shot profile (80%) with their post-reno Muirfield shot history (20%) into one field-relative percentile. The last column, <b>R1+2&nbsp;Toll</b>, flags this week&rsquo;s draw &mdash; each player&rsquo;s average playability toll across their actual Round&nbsp;1 and Round&nbsp;2 tee times (lower = the easier two-day rotation, essentially who drew Friday morning).</p>
 
-  <div class="t-wrap"><table class="srt stick2 cardify">
+  <div class="t-wrap"><table class="srt stick2 cardify" data-pcat="DataGolf + draw">
     <thead><tr><th class="l">#</th><th class="l">Player</th><th>DG&nbsp;Tot</th><th>DG&nbsp;APP</th><th>DG&nbsp;OTT</th><th>DG&nbsp;Putt</th><th>&rsquo;26&nbsp;Tile</th><th>Consist</th><th title="blended shot-quality percentile vs the field: 2026 season shot profile (80%) + post-reno Muirfield shot profile (20%); debutants are pure 2026">Shot&nbsp;Q</th><th>Muir&nbsp;SG/rd</th><th>Ev</th><th>R1&nbsp;Tee</th><th>R2&nbsp;Tee</th><th title="Average playability toll across the player's actual R1 + R2 tee times — lower = the easier draw">R1+2&nbsp;Toll</th></tr></thead>
     <tbody>
 <tr><td class="l dim num" data-label="Rank">1</td><td class="l name" data-label="Player">Scottie Scheffler</td><td style="background:rgba(16,185,129,0.58)" data-label="DG Tot"><span class="num">+2.97</span></td><td style="background:rgba(16,185,129,0.49)" data-label="DG APP"><span class="num">+0.85</span></td><td style="background:rgba(16,185,129,0.52)" data-label="DG OTT"><span class="num">+0.93</span></td><td style="background:rgba(16,185,129,0.45)" data-label="DG Putt"><span class="num">+0.64</span></td><td style="background:rgba(16,185,129,0.34)" data-label="’26 Tile"><span class="num">+0.22</span></td><td style="background:rgba(16,185,129,0.47)" data-label="Consist"><span class="num">55</span></td><td style="background:rgba(16,185,129,0.58)" data-label="Shot Q"><span class="num">100</span></td><td style="background:rgba(16,185,129,0.58)" data-label="Muir SG/rd"><span class="num">+3.44</span></td><td class="num dim" data-label="Ev">4</td><td style="background:rgba(251,146,60,0.13)" data-label="R1 Tee"><span class="num">1:35p</span></td><td style="background:rgba(56,189,248,0.13)" data-label="R2 Tee"><span class="num">10:25a</span></td><td style="background:rgba(239,68,68,0.24)" data-label="R1+2 Toll"><span class="num">10.9</span></td></tr>
@@ -733,11 +778,12 @@
   </section>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">The Iron-Bin Edge &mdash; Who the Distance Mix Helps</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">The Iron-Bin Edge &mdash; Who the Distance Mix Helps</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Who&rsquo;s genuinely good from the long irons this course demands &mdash; SG quality, not how often.</div>
   <p class="lead">Muirfield is a <b>long-iron course</b>: just <b>6% of approaches come from inside 100 yards</b> (0.72&times; the Tour rate &mdash; the wedge game is starved), while <b>68% come from 150+</b> &mdash; 37% from the 150&ndash;200 band (the single busiest) and another 31% from 200+ (1.1&times; the Tour rate). So what matters isn&rsquo;t how <i>often</i> a player faces each distance &mdash; that just reflects how far they hit it &mdash; it&rsquo;s <b>how well they score from the irons this course actually asks for</b>. Each cell below is the player&rsquo;s <b>strokes-gained-per-shot percentile</b> in that band this season (green&nbsp;=&nbsp;field-best <i>quality</i>, not field-most-<i>often</i>); <b>Fit</b> weights those by Muirfield&rsquo;s distance demand &mdash; so the table rewards being genuinely good at the long irons, not just living there.</p>
 
-  <div class="card"><h3 class="font-display">Iron-bin fit &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">field percentile of <b>SG per shot</b> in each band &mdash; how well they <b>score</b> from that range (green&nbsp;=&nbsp;field-best), not how often; <b>Fit</b> weights each band by Muirfield&rsquo;s demand &middot; sorted by Fit &middot; scroll for all 71</div><div class="t-wrap vscroll"><table class="cardify"><thead><tr><th class="l">Player</th><th>&lt;100</th><th>100&ndash;150</th><th title="Muirfield&rsquo;s busiest band">150&ndash;200</th><th>200+</th><th title="fit to Muirfield&rsquo;s distance mix">Fit</th></tr></thead><tbody>
+  <div class="card"><h3 class="font-display">Iron-bin fit &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">field percentile of <b>SG per shot</b> in each band &mdash; how well they <b>score</b> from that range (green&nbsp;=&nbsp;field-best), not how often; <b>Fit</b> weights each band by Muirfield&rsquo;s demand &middot; sorted by Fit &middot; scroll for all 71</div><div class="t-wrap vscroll"><table class="cardify" data-pcat="Iron bins (SG quality)"><thead><tr><th class="l">Player</th><th>&lt;100</th><th>100&ndash;150</th><th title="Muirfield&rsquo;s busiest band">150&ndash;200</th><th>200+</th><th title="fit to Muirfield&rsquo;s distance mix">Fit</th></tr></thead><tbody>
 <tr><td class="l name" data-label="Player">Si Woo Kim</td><td style="background:rgba(239,68,68,0.18)" data-label="<100"><span class="num">33</span></td><td style="background:rgba(16,185,129,0.28)" data-label="100-150"><span class="num">76</span></td><td style="background:rgba(16,185,129,0.53)" data-label="150-200"><span class="num">100</span></td><td style="background:rgba(16,185,129,0.41)" data-label="200+"><span class="num">89</span></td><td style="background:rgba(16,185,129,0.38)" data-label="Fit"><span class="num">86</span></td></tr>
 <tr><td class="l name" data-label="Player">Ryan Gerard</td><td style="background:rgba(16,185,129,0.22)" data-label="<100"><span class="num">71</span></td><td style="background:rgba(16,185,129,0.47)" data-label="100-150"><span class="num">94</span></td><td style="background:rgba(16,185,129,0.35)" data-label="150-200"><span class="num">83</span></td><td style="background:rgba(16,185,129,0.36)" data-label="200+"><span class="num">84</span></td><td style="background:rgba(16,185,129,0.37)" data-label="Fit"><span class="num">85</span></td></tr>
 <tr><td class="l name" data-label="Player">Adam Scott</td><td style="background:rgba(16,185,129,0.20)" data-label="<100"><span class="num">69</span></td><td style="background:rgba(239,68,68,0.06)" data-label="100-150"><span class="num">44</span></td><td style="background:rgba(16,185,129,0.50)" data-label="150-200"><span class="num">97</span></td><td style="background:rgba(16,185,129,0.50)" data-label="200+"><span class="num">97</span></td><td style="background:rgba(16,185,129,0.34)" data-label="Fit"><span class="num">82</span></td></tr>
@@ -818,11 +864,12 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Scrambling on the Tightest Greens</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Scrambling on the Tightest Greens</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Hardest greens to hit on Tour, so up-and-down carries: who saves par when approaches miss.</div>
   <p class="lead">The flip side of the hardest greens to hit on Tour (<b>55% GIR</b>): you will <b>miss roughly 8 a round</b>, so the short game isn&rsquo;t a luxury here &mdash; it&rsquo;s load-bearing. Up-and-down rate (<b>par-or-better when you miss the green</b>) and SG around the green decide whether those misses are pars or bogeys. On greens this firm, a missed approach with <b>no recovery is a straight dropped shot</b>.</p>
 
-  <div class="card"><h3 class="font-display">Short game &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">ARG / putting field percentiles + up-and-down rate; sorted by short-game composite &middot; scroll for all</div><div class="t-wrap vscroll"><table class="cardify"><thead><tr><th class="l">Player</th><th title="SG around the green, field pctile">ARG</th><th title="up-and-down rate when the green is missed">Scr%</th><th title="SG putting, field pctile">Putt</th><th title="short-game composite pctile">Short</th></tr></thead><tbody>
+  <div class="card"><h3 class="font-display">Short game &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">ARG / putting field percentiles + up-and-down rate; sorted by short-game composite &middot; scroll for all</div><div class="t-wrap vscroll"><table class="cardify" data-pcat="Short game"><thead><tr><th class="l">Player</th><th title="SG around the green, field pctile">ARG</th><th title="up-and-down rate when the green is missed">Scr%</th><th title="SG putting, field pctile">Putt</th><th title="short-game composite pctile">Short</th></tr></thead><tbody>
 <tr><td class="l name" data-label="Player">Tommy Fleetwood</td><td style="background:rgba(16,185,129,0.51)" data-label="ARG"><span class="num">99</span></td><td style="background:rgba(16,185,129,0.50)" data-label="Scr%"><span class="num">68%</span></td><td style="background:rgba(239,68,68,0.17)" data-label="Putt"><span class="num">34</span></td><td style="background:rgba(16,185,129,0.50)" data-label="Short"><span class="num">98</span></td></tr>
 <tr><td class="l name" data-label="Player">Scottie Scheffler</td><td style="background:rgba(16,185,129,0.45)" data-label="ARG"><span class="num">93</span></td><td style="background:rgba(16,185,129,0.48)" data-label="Scr%"><span class="num">68%</span></td><td style="background:rgba(16,185,129,0.42)" data-label="Putt"><span class="num">90</span></td><td style="background:rgba(16,185,129,0.46)" data-label="Short"><span class="num">94</span></td></tr>
 <tr><td class="l name" data-label="Player">Mac Meissner</td><td style="background:rgba(16,185,129,0.44)" data-label="ARG"><span class="num">92</span></td><td style="background:rgba(16,185,129,0.47)" data-label="Scr%"><span class="num">67%</span></td><td style="background:rgba(16,185,129,0.29)" data-label="Putt"><span class="num">78</span></td><td style="background:rgba(16,185,129,0.46)" data-label="Short"><span class="num">94</span></td></tr>
@@ -902,11 +949,12 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">The Complete Picture &mdash; Who Checks Every Box</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">The Complete Picture &mdash; Who Checks Every Box</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Every lens stacked into one Muirfield Fit number &mdash; who checks every box.</div>
   <p class="lead">Stack the lenses. Muirfield leans hardest on the <b>approach game</b> (its dominant scoring skill), <b>demands a short game</b> (the tightest greens), <b>rewards consistency</b> (the Tour&rsquo;s hardest test, with no soft holes to coast on) and <b>neutralizes distance</b>. Weighting each player&rsquo;s 2026 field percentiles accordingly &mdash; <b>long irons 38% &middot; short game 30% &middot; putting 20% &middot; driving 12%</b> &mdash; gives one <b>Muirfield Fit</b> number, read against how <b>consistently</b> it shows up and their <b>history here</b>.</p>
 
-  <div class="card"><div class="ch-note" style="margin:0 0 6px">Irons / Short / Putt = field percentiles (green&nbsp;=&nbsp;best); Fit blends them by Muirfield&rsquo;s reward weights &middot; scroll for all qualified golfers</div><div class="t-wrap vscroll"><table class="cardify"><thead><tr><th class="l">#</th><th class="l">Player</th><th title="125-200+ irons, field pctile">Irons</th><th title="around-green + scrambling pctile">Short</th><th title="putting pctile">Putt</th><th title="consistency: mean per-hole SG pctile">Cons</th><th title="post-reno Muirfield SG/rd">Muir</th><th title="Muirfield Fit composite">Fit</th></tr></thead><tbody>
+  <div class="card"><div class="ch-note" style="margin:0 0 6px">Irons / Short / Putt = field percentiles (green&nbsp;=&nbsp;best); Fit blends them by Muirfield&rsquo;s reward weights &middot; scroll for all qualified golfers</div><div class="t-wrap vscroll"><table class="cardify" data-pcat="Muirfield Fit"><thead><tr><th class="l">#</th><th class="l">Player</th><th title="125-200+ irons, field pctile">Irons</th><th title="around-green + scrambling pctile">Short</th><th title="putting pctile">Putt</th><th title="consistency: mean per-hole SG pctile">Cons</th><th title="post-reno Muirfield SG/rd">Muir</th><th title="Muirfield Fit composite">Fit</th></tr></thead><tbody>
 <tr><td class="l dim num" data-label="Rank">1</td><td class="l name" data-label="Player">Scottie Scheffler</td><td style="background:rgba(16,185,129,0.38)" data-label="Irons"><span class="num">86</span></td><td style="background:rgba(16,185,129,0.46)" data-label="Short"><span class="num">94</span></td><td style="background:rgba(16,185,129,0.42)" data-label="Putt"><span class="num">90</span></td><td data-label="Cons"><span class="num">55</span></td><td style=background:rgba(16,185,129,0.30) data-label="Muir"><span class="num">+3.4</span></td><td style="background:rgba(16,185,129,0.52)" data-label="Fit"><span class="num">90</span></td></tr>
 <tr><td class="l dim num" data-label="Rank">2</td><td class="l name" data-label="Player">Si Woo Kim</td><td style="background:rgba(16,185,129,0.49)" data-label="Irons"><span class="num">97</span></td><td style="background:rgba(16,185,129,0.41)" data-label="Short"><span class="num">89</span></td><td style="background:rgba(239,68,68,0.16)" data-label="Putt"><span class="num">35</span></td><td data-label="Cons"><span class="num">54</span></td><td style=background:rgba(16,185,129,0.30) data-label="Muir"><span class="num">+1.6</span></td><td style="background:rgba(16,185,129,0.40)" data-label="Fit"><span class="num">82</span></td></tr>
 <tr><td class="l dim num" data-label="Rank">3</td><td class="l name" data-label="Player">Cameron Young</td><td style="background:rgba(16,185,129,0.22)" data-label="Irons"><span class="num">71</span></td><td style="background:rgba(16,185,129,0.40)" data-label="Short"><span class="num">88</span></td><td style="background:rgba(16,185,129,0.15)" data-label="Putt"><span class="num">64</span></td><td data-label="Cons"><span class="num">54</span></td><td style=background:rgba(239,68,68,0.25) data-label="Muir"><span class="num">-0.3</span></td><td style="background:rgba(16,185,129,0.35)" data-label="Fit"><span class="num">78</span></td></tr>
@@ -987,8 +1035,9 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Courses That Play Like Muirfield &mdash; and the Form That Confirms It</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Courses That Play Like Muirfield &mdash; and the Form That Confirms It</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">The comp set, and whether players&rsquo; recent form there backs the fit (r&nbsp;=&nbsp;+0.56).</div>
   <p class="lead">Every venue in the 37-course archive gets a <b>fingerprint</b> &mdash; green difficulty, fairway width, approach length, par-type difficulty, scrambling difficulty, and the accuracy-vs-distance tilt &mdash; standardized and measured against Muirfield&rsquo;s. The nearest neighbors aren&rsquo;t a surprise: they&rsquo;re the Tour&rsquo;s hard, second-shot, <b>ball-strikers&rsquo; courses</b>. The question is whether that comp set actually <b>predicts</b> who plays well here &mdash; and the recent form says it does.</p>
 
   <div class="card"><h3 class="font-display">Muirfield&rsquo;s nearest neighbors</h3><div class="ch-note">closest fingerprints across the 37-venue archive (similarity, 100 = identical profile)</div>
@@ -1011,7 +1060,7 @@
     <p>Pooling each player&rsquo;s SG-total per round across the <b>eight most-similar courses</b> over the last ~12 months and correlating it with their <b>Muirfield Fit</b> (the composite from the section above) returns <b>r&nbsp;=&nbsp;+0.56</b> &mdash; a strong link. The players our model grades as Muirfield archetypes are, in fact, the ones lighting up Muirfield-like courses right now. Fit also tracks <b>actual</b> Muirfield history at <b>r&nbsp;=&nbsp;+0.40</b>. The archetype read isn&rsquo;t just theory; it shows up in the results.</p>
   </div>
 
-  <div class="card"><h3 class="font-display">Field form at the comp set &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">SG-total/round at the 8 most-similar courses, last ~12mo (&ge;3 played); sorted &middot; scroll for all</div><div class="t-wrap vscroll"><table class="cardify"><thead><tr><th class="l">Player</th><th title="SG-total/round at the 8 most-similar courses, last ~12mo">SG/rd</th><th title="# of the 8 comps played">Ev</th><th title="Muirfield Fit composite">Fit</th><th title="actual Muirfield SG/rd">Muir</th></tr></thead><tbody>
+  <div class="card"><h3 class="font-display">Field form at the comp set &mdash; every qualified golfer</h3><div class="ch-note" style="margin:0 0 6px">SG-total/round at the 8 most-similar courses, last ~12mo (&ge;3 played); sorted &middot; scroll for all</div><div class="t-wrap vscroll"><table class="cardify" data-pcat="Comp-course form"><thead><tr><th class="l">Player</th><th title="SG-total/round at the 8 most-similar courses, last ~12mo">SG/rd</th><th title="# of the 8 comps played">Ev</th><th title="Muirfield Fit composite">Fit</th><th title="actual Muirfield SG/rd">Muir</th></tr></thead><tbody>
 <tr><td class="l name" data-label="Player">Ludvig &Aring;berg</td><td style="background:rgba(16,185,129,0.53)" data-label="SG/rd"><span class="num">+3.16</span></td><td class="num dim" data-label="Ev">8</td><td style="background:rgba(16,185,129,0.26)" data-label="Fit"><span class="num">72</span></td><td style=background:rgba(16,185,129,0.30) data-label="Muir"><span class="num">+1.4</span></td></tr>
 <tr><td class="l name" data-label="Player">Rory McIlroy</td><td style="background:rgba(16,185,129,0.47)" data-label="SG/rd"><span class="num">+2.83</span></td><td class="num dim" data-label="Ev">7</td><td style="background:rgba(16,185,129,0.29)" data-label="Fit"><span class="num">74</span></td><td style=background:rgba(16,185,129,0.30) data-label="Muir"><span class="num">+1.7</span></td></tr>
 <tr><td class="l name" data-label="Player">Scottie Scheffler</td><td style="background:rgba(16,185,129,0.45)" data-label="SG/rd"><span class="num">+2.76</span></td><td class="num dim" data-label="Ev">7</td><td style="background:rgba(16,185,129,0.52)" data-label="Fit"><span class="num">90</span></td><td style=background:rgba(16,185,129,0.30) data-label="Muir"><span class="num">+3.4</span></td></tr>
@@ -1090,8 +1139,9 @@
   </div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Player Notebook &mdash; From the Press Room</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Player Notebook &mdash; From the Press Room</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">What the field and Jack said this week, tied back to the analysis.</div>
   <p class="lead">What the host and the field said this week at Muirfield &mdash; and how it squares with the analysis above. Verbatim from the Tuesday&ndash;Wednesday press conferences.</p>
   <div class="callout"><h3>Jack Nicklaus &mdash; the design intent</h3>
     <p>&ldquo;I <b>didn&rsquo;t design it for big hitters, didn&rsquo;t design it for short hitters, didn&rsquo;t design it for the middle</b>.&rdquo; &middot; &ldquo;I never played with spin. I played with <b>trajectory</b>, not spin&hellip; spin gets you in a little bit of trouble.&rdquo; On the firm greens (3, 6, 9, 10, 14, 15, 17, 18): &ldquo;If you <b>spin the ball off of those greens</b>&hellip; not a good result.&rdquo; <span class="bo-cap">straight from the architect &mdash; the bomber-neutral, accuracy-first, firm-green read the data shows</span></p></div>
@@ -1105,8 +1155,9 @@
     <p>&ldquo;This course you got to be <b>playing from the fairways</b>.&rdquo; &middot; &ldquo;When you get out of position at this golf course you got to <b>take your medicine and eliminate the big number</b>.&rdquo; &middot; &ldquo;I&rsquo;ve been hitting it good, really <b>starting to putt it good</b>.&rdquo; <span class="bo-cap">position-first, avoid the blow-up &mdash; the par-4 survival test</span></p></div>
 </section>
 
-<section>
-  <div class="sec-head"><h2 class="font-display">Round 1 Outlook — Thursday</h2></div>
+<section class="csec collapsed">
+  <div class="sec-head"><h2 class="font-display">Round 1 Outlook — Thursday</h2><svg class="csec-chev" viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+  <div class="csec-summary">Thursday&rsquo;s the soft spot &mdash; calm and benign. Go low early.</div>
   <p class="lead">Round 1 is the week&rsquo;s scoring opportunity. With light morning winds (toll holds near 6, dipping to <b>~3.8 around 8 AM</b>) and dry, sunny skies, the early wave gets Muirfield at its most gettable before Friday&rsquo;s wind. But &ldquo;gettable&rdquo; is relative on a firm second-shot course &mdash; the long 4s and the closing stretch still demand precise irons, and the par 5s are where the red numbers come from.</p>
   <ul class="narr">
     <li><b>Where to score:</b> the par 5s &mdash; 15th (40% birdie, easiest on the course), 7th (33%), 5th (32%), 11th (29%) &mdash; plus the short par-4 14th (24%). A clean Thursday means going at least 3-under on the 5s.</li>
@@ -1616,6 +1667,7 @@
         chip.className = 'sec-chip';
         chip.textContent = shortLabel(h.textContent);
         chip.addEventListener('click', function(){
+          var __cs = h.closest('.csec'); if(__cs){ __cs.classList.remove('collapsed'); var __r=__cs.querySelectorAll('.reveal:not(.in)'); for(var __i=0;__i<__r.length;__i++) __r[__i].classList.add('in'); }
           var off = (topnav ? topnav.offsetHeight : 64) + 10;
           var y = h.getBoundingClientRect().top + window.pageYOffset - off;
           window.scrollTo({ top: y, behavior: 'smooth' });
@@ -1698,6 +1750,101 @@
     }, {passive:true});
   }
   if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<button id="psearch-fab" class="psearch-fab no-print" aria-label="Search any player"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></button>
+<div id="psearch" class="psearch-overlay no-print" hidden>
+  <div class="psearch-box">
+    <div class="psearch-top"><svg class="psearch-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg><input id="psearch-input" type="text" placeholder="Search any player…" autocomplete="off" autocapitalize="off" spellcheck="false"><button id="psearch-close" aria-label="Close">✕</button></div>
+    <div id="psearch-list" class="psearch-list"></div>
+    <div id="psearch-card" class="psearch-card"></div>
+  </div>
+</div>
+<script>
+(function(){
+  function norm(s){ return (s||'').toLowerCase().replace(/[^a-z]/g,''); }
+  function ready(fn){ if(document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+  ready(function(){
+    var secs = document.querySelectorAll('#tab-preview .csec');
+    function reveal(sec){ var r=sec.querySelectorAll('.reveal:not(.in)'); for(var k=0;k<r.length;k++) r[k].classList.add('in'); }
+    secs.forEach(function(sec){
+      var head=sec.querySelector('.sec-head'); if(!head) return;
+      head.addEventListener('click', function(e){
+        if(e.target.closest('button,a,input,select,details,summary')) return;
+        var collapsed=sec.classList.toggle('collapsed');
+        if(!collapsed) reveal(sec);
+      });
+    });
+    var allBtn=document.getElementById('csec-all');
+    if(allBtn){ allBtn.addEventListener('click', function(){
+      var anyC=[].some.call(secs, function(s){ return s.classList.contains('collapsed'); });
+      secs.forEach(function(s){ s.classList.toggle('collapsed', !anyC); if(anyC) reveal(s); });
+      allBtn.innerHTML = anyC ? '&#9650; Collapse all' : '&#9662; Expand all';
+    }); }
+
+    /* ---- player search index from cardify tables ---- */
+    var INDEX={}, NAMES=[];
+    document.querySelectorAll('#tab-preview table.cardify').forEach(function(tbl){
+      var title=tbl.getAttribute('data-pcat')||'Stats';
+      tbl.querySelectorAll('tbody tr').forEach(function(tr){
+        var nc=tr.querySelector('td.name'); if(!nc) return;
+        var name=nc.textContent.trim(); if(!name) return;
+        var key=norm(name);
+        if(!INDEX[key]){ INDEX[key]={name:name, cats:[]}; NAMES.push(key); }
+        var stats=[];
+        [].forEach.call(tr.querySelectorAll('td'), function(td){
+          if(td.classList.contains('name')) return;
+          var lab=td.getAttribute('data-label')||'';
+          if(lab==='Rank'||lab==='Player') return;
+          var v=td.textContent.trim(); if(v===''||v==='\u2014'||v==='-') return;
+          stats.push({label:lab, val:v, bg:td.style.background||''});
+        });
+        if(stats.length) INDEX[key].cats.push({title:title, stats:stats});
+      });
+    });
+    var ORDER=['Muirfield Fit','Iron bins (SG quality)','Short game','Comp-course form','DataGolf + draw'];
+    function catRank(t){ var i=ORDER.indexOf(t); return i<0?99:i; }
+
+    var overlay=document.getElementById('psearch'), input=document.getElementById('psearch-input');
+    var listEl=document.getElementById('psearch-list'), cardEl=document.getElementById('psearch-card');
+    function esc(s){ return (s||'').replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+    function openS(){ overlay.hidden=false; document.body.style.overflow='hidden'; input.value=''; cardEl.innerHTML=''; renderList(''); setTimeout(function(){ input.focus(); }, 40); }
+    function closeS(){ overlay.hidden=true; document.body.style.overflow=''; }
+    function renderList(q){
+      var nq=norm(q), keys=NAMES.slice();
+      if(nq){ keys=keys.filter(function(k){ return k.indexOf(nq)>=0; }).sort(function(a,b){ return a.indexOf(nq)-b.indexOf(nq) || INDEX[a].name.localeCompare(INDEX[b].name); }); }
+      else { keys=keys.sort(function(a,b){ return INDEX[a].name.localeCompare(INDEX[b].name); }); }
+      if(!keys.length){ listEl.innerHTML='<div class="psr-empty">No player by that name in the field tables.</div>'; return; }
+      listEl.innerHTML='';
+      keys.slice(0,14).forEach(function(k){
+        var b=document.createElement('button'); b.className='psr'; b.textContent=INDEX[k].name;
+        b.addEventListener('click', function(){ renderCard(k); });
+        listEl.appendChild(b);
+      });
+    }
+    function renderCard(key){
+      var p=INDEX[key]; if(!p) return; listEl.innerHTML='';
+      var cats=p.cats.slice().sort(function(a,b){ return catRank(a.title)-catRank(b.title); });
+      var h='<div class="psc-name">'+esc(p.name)+'</div>';
+      cats.forEach(function(c){
+        h+='<div class="psc-cat"><div class="psc-cat-t">'+esc(c.title)+'</div><div class="psc-stats">';
+        c.stats.forEach(function(s){
+          var st=s.bg?' style="background:'+s.bg+'"':'';
+          h+='<div class="psc-stat"'+st+'><span class="psc-l">'+esc(s.label)+'</span><span class="psc-v">'+esc(s.val)+'</span></div>';
+        });
+        h+='</div></div>';
+      });
+      h+='<button class="psc-back">&#8592; back to search</button>';
+      cardEl.innerHTML=h;
+      cardEl.querySelector('.psc-back').addEventListener('click', function(){ cardEl.innerHTML=''; renderList(input.value); input.focus(); });
+      cardEl.scrollTop=0; listEl.scrollTop=0;
+    }
+    if(input) input.addEventListener('input', function(){ cardEl.innerHTML=''; renderList(input.value); });
+    var fab=document.getElementById('psearch-fab'); if(fab) fab.addEventListener('click', openS);
+    var cl=document.getElementById('psearch-close'); if(cl) cl.addEventListener('click', closeS);
+    if(overlay) overlay.addEventListener('click', function(e){ if(e.target===overlay) closeS(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && overlay && !overlay.hidden) closeS(); });
+  });
 })();
 </script>
 </body>
