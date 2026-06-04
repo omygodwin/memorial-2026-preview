@@ -1684,6 +1684,7 @@
       b.setAttribute('aria-label','Pick '+(i+1));
       (function(idx){ b.addEventListener('click',function(){
         picks.scrollLeft += cards[idx].getBoundingClientRect().left - picks.getBoundingClientRect().left;
+        var dd=dots.querySelectorAll('.pdot'); for(var k=0;k<dd.length;k++) dd[k].classList.toggle('active', k===idx);
       }); })(i);
       dots.appendChild(b);
     }
