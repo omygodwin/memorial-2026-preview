@@ -462,6 +462,9 @@
 .psc-stat{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:5px 9px; border-radius:7px; background:var(--navy-800); border:1px solid var(--navy-700)}
 .psc-l{font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; color:var(--ink-dim)}
 .psc-v{font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--ink); font-weight:600}
+.psc-sub{font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-dim); margin:-4px 0 10px}
+.psc-of{font-weight:400; font-size:11px; color:var(--ink-soft)}
+.psc-rk{font-weight:400; font-size:10px; color:var(--ink-dim); margin-left:6px}
 .psc-back{margin-top:4px; background:var(--navy-800); border:1px solid var(--navy-700); color:var(--ink-soft); border-radius:999px; padding:7px 14px; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer}
 @media (max-width:560px){ .psearch-overlay{padding:4vh 8px 8px} .psearch-box{max-height:90vh} }
 
@@ -1795,9 +1798,27 @@
 
     /* ---- player search index from cardify tables ---- */
     var INDEX={}, NAMES=[];
+    var RANKSKIP={'Rank':1,'Player':1,'EV':1,'R1 Tee':1,'R2 Tee':1,'R1+2 Toll':1};
+    function pnum(s){ var n=parseFloat(String(s).replace(/[^0-9.\-]/g,'')); return isNaN(n)?null:n; }
     document.querySelectorAll('#tab-preview table.cardify').forEach(function(tbl){
       var title=tbl.getAttribute('data-pcat')||'Stats';
-      tbl.querySelectorAll('tbody tr').forEach(function(tr){
+      var rows=[].slice.call(tbl.querySelectorAll('tbody tr'));
+      var colVals={};
+      rows.forEach(function(tr){
+        [].forEach.call(tr.querySelectorAll('td'), function(td){
+          var lab=td.getAttribute('data-label')||'';
+          if(td.classList.contains('name')||RANKSKIP[lab]) return;
+          var n=pnum(td.textContent.trim());
+          if(n!==null){ (colVals[lab]=colVals[lab]||[]).push(n); }
+        });
+      });
+      var colMeta={};
+      Object.keys(colVals).forEach(function(lab){
+        var a=colVals[lab];
+        var isPct=a.every(function(v){ return v===Math.round(v) && v>=0 && v<=100; }) && lab.indexOf('%')<0;
+        colMeta[lab]={vals:a, total:a.length, pct:isPct};
+      });
+      rows.forEach(function(tr){
         var nc=tr.querySelector('td.name'); if(!nc) return;
         var name=nc.textContent.trim(); if(!name) return;
         var key=norm(name);
@@ -1807,8 +1828,14 @@
           if(td.classList.contains('name')) return;
           var lab=td.getAttribute('data-label')||'';
           if(lab==='Rank'||lab==='Player') return;
-          var v=td.textContent.trim(); if(v===''||v==='\u2014'||v==='-') return;
-          stats.push({label:lab, val:v, bg:td.style.background||''});
+          var v=td.textContent.trim(); if(v===''||v==='—'||v==='-') return;
+          var stat={label:lab, val:v, bg:td.style.background||''};
+          var cm=colMeta[lab], n=pnum(v);
+          if(cm && n!==null){
+            var rk=1; for(var i=0;i<cm.vals.length;i++){ if(cm.vals[i]>n) rk++; }
+            stat.rank=rk; stat.total=cm.total; stat.pct=cm.pct;
+          }
+          stats.push(stat);
         });
         if(stats.length) INDEX[key].cats.push({title:title, stats:stats});
       });
@@ -1836,12 +1863,16 @@
     function renderCard(key){
       var p=INDEX[key]; if(!p) return; listEl.innerHTML='';
       var cats=p.cats.slice().sort(function(a,b){ return catRank(a.title)-catRank(b.title); });
-      var h='<div class="psc-name">'+esc(p.name)+'</div>';
+      var h='<div class="psc-name">'+esc(p.name)+'</div><div class="psc-sub">ranks shown N / field &middot; 1 = best</div>';
       cats.forEach(function(c){
         h+='<div class="psc-cat"><div class="psc-cat-t">'+esc(c.title)+'</div><div class="psc-stats">';
         c.stats.forEach(function(s){
           var st=s.bg?' style="background:'+s.bg+'"':'';
-          h+='<div class="psc-stat"'+st+'><span class="psc-l">'+esc(s.label)+'</span><span class="psc-v">'+esc(s.val)+'</span></div>';
+          var inner;
+          if(s.rank && s.pct){ inner=s.rank+'<span class="psc-of"> / '+s.total+'</span>'; }
+          else if(s.rank){ inner=esc(s.val)+'<span class="psc-rk">'+s.rank+'/'+s.total+'</span>'; }
+          else { inner=esc(s.val); }
+          h+='<div class="psc-stat"'+st+'><span class="psc-l">'+esc(s.label)+'</span><span class="psc-v">'+inner+'</span></div>';
         });
         h+='</div></div>';
       });
