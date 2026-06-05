@@ -451,7 +451,7 @@
 #psearch-input::placeholder{color:var(--ink-dim)}
 #psearch-close{background:transparent; border:0; color:var(--ink-dim); font-size:16px; cursor:pointer; padding:2px 6px}
 .psearch-list{overflow-y:auto; padding:6px}
-.psr{display:block; width:100%; text-align:left; background:transparent; border:0; border-radius:8px; padding:9px 11px; color:var(--ink); font-family:'Lora',serif; font-size:14.5px; cursor:pointer}
+.psr{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:transparent; border:0; border-radius:8px; padding:8px 11px; color:var(--ink); font-family:'Lora',serif; font-size:15px; cursor:pointer}.psr-hs{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 16%;background:var(--navy-800);flex:0 0 auto}.psr-nm{flex:1 1 auto}.psc-head{display:flex;align-items:center;gap:14px;padding:8px 0 10px;border-bottom:1px solid var(--navy-700);margin-bottom:9px}.psc-head .psc-name{padding:0;border:0;margin:0}.psc-head .psc-sub{margin:3px 0 0}.psc-hs{width:104px;height:104px;border-radius:14px;object-fit:cover;object-position:50% 14%;background:var(--navy-800);flex:0 0 auto}
 .psr:hover{background:var(--navy-800)}
 .psr-empty{padding:14px; color:var(--ink-dim); font-size:13px}
 .psearch-card{overflow-y:auto; padding:4px 12px 14px}
@@ -486,7 +486,7 @@
 #tab-r2 .odds-c{font-family:'IBM Plex Mono',monospace; color:var(--emer); font-size:12px}
 #tab-r2 table td.num{text-align:right}
 
-.name .hs{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 18%;vertical-align:middle;margin-right:10px;background:var(--navy-800);display:inline-block;flex:0 0 auto}</style>
+.name .hs{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 18%;vertical-align:middle;margin-right:11px;background:var(--navy-800);display:inline-block;flex:0 0 auto}</style>
 </head>
 <body>
 <div id="read-prog"></div>
@@ -1983,7 +1983,7 @@
         var nc=tr.querySelector('td.name'); if(!nc) return;
         var name=nc.textContent.trim(); if(!name) return;
         var key=norm(name);
-        if(!INDEX[key]){ INDEX[key]={name:name, cats:[]}; NAMES.push(key); }
+        if(!INDEX[key]){ var _hi=nc.querySelector('img.hs'); INDEX[key]={name:name, cats:[], img:(_hi?_hi.getAttribute('src'):'')}; NAMES.push(key); }
         var stats=[];
         [].forEach.call(tr.querySelectorAll('td'), function(td){
           if(td.classList.contains('name')) return;
@@ -2016,7 +2016,7 @@
       if(!keys.length){ listEl.innerHTML='<div class="psr-empty">No player by that name in the field tables.</div>'; return; }
       listEl.innerHTML='';
       keys.slice(0,14).forEach(function(k){
-        var b=document.createElement('button'); b.className='psr'; b.textContent=INDEX[k].name;
+        var b=document.createElement('button'); b.className='psr'; b.innerHTML=(INDEX[k].img?'<img class="psr-hs" src="'+INDEX[k].img+'" alt="">':'')+'<span class="psr-nm">'+esc(INDEX[k].name)+'</span>';
         b.addEventListener('click', function(){ renderCard(k); });
         listEl.appendChild(b);
       });
@@ -2024,7 +2024,7 @@
     function renderCard(key){
       var p=INDEX[key]; if(!p) return; listEl.innerHTML='';
       var cats=p.cats.slice().sort(function(a,b){ return catRank(a.title)-catRank(b.title); });
-      var h='<div class="psc-name">'+esc(p.name)+'</div><div class="psc-sub">ranks shown N / field &middot; 1 = best</div>';
+      var h='<div class="psc-head">'+(p.img?'<img class="psc-hs" src="'+p.img+'" alt="">':'')+'<div class="psc-head-t"><div class="psc-name">'+esc(p.name)+'</div><div class="psc-sub">ranks shown N / field &middot; 1 = best</div></div></div>';
       cats.forEach(function(c){
         h+='<div class="psc-cat"><div class="psc-cat-t">'+esc(c.title)+'</div><div class="psc-stats">';
         c.stats.forEach(function(s){
