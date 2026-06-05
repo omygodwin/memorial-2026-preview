@@ -1798,7 +1798,7 @@
 
     /* ---- player search index from cardify tables ---- */
     var INDEX={}, NAMES=[];
-    var RANKSKIP={'Rank':1,'Player':1,'EV':1,'R1 Tee':1,'R2 Tee':1,'R1+2 Toll':1};
+    var RANKSKIP={'Rank':1,'Player':1,'Ev':1,'EV':1,'R1 Tee':1,'R2 Tee':1,'R1+2 Toll':1};
     function pnum(s){ var n=parseFloat(String(s).replace(/[^0-9.\-]/g,'')); return isNaN(n)?null:n; }
     document.querySelectorAll('#tab-preview table.cardify').forEach(function(tbl){
       var title=tbl.getAttribute('data-pcat')||'Stats';
