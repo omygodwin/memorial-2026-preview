@@ -510,15 +510,15 @@
 
 <div class="topnav no-print">
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="preview">Preview</button>
+  <button class="tab-btn active" data-tab="r2">R1 → R2</button>
+  <button class="tab-btn" data-tab="preview">Pre-Tourney Preview</button>
   <button class="tab-btn" data-tab="holes">Hole-by-Hole</button>
   <button class="tab-btn" data-tab="pins">Pin Zones</button>
-  <button class="tab-btn" data-tab="r2">R1 → R2</button>
 </div>
 <div id="sec-nav" class="sec-nav"></div>
 </div>
 
-<div id="tab-preview" class="tab-panel active">
+<div id="tab-preview" class="tab-panel">
 
 <section class="sixty">
   <div class="sixty-head"><span class="sixty-kicker">The 60-Second Read</span><span class="sixty-sub">the whole week, before the tables</span></div>
@@ -1586,7 +1586,7 @@
 
 </div>
 
-<div id="tab-r2" class="tab-panel">
+<div id="tab-r2" class="tab-panel active">
 <section class="sixty"><div class="sixty-head"><span class="sixty-kicker">Round 1 Review &middot; Round 2 Preview</span><span class="sixty-sub">Thursday is in the books &mdash; Friday&rsquo;s angles</span></div><p class="sixty-verdict">Four share the lead at <b>&minus;5</b> &mdash; but <b>Fleetwood</b> got there on a hot short game with flat ball-striking (his words: <i>&ldquo;I got the most out of the round&rdquo;</i>), while <b>Clark</b> and <b>Nick Taylor</b> struck it elite with cold putters &mdash; the more durable hand. <b>Scheffler</b> is buried at T36 after an off day and the worst draw, but the model still has him #1 in skill. Friday tilts late: the <b>AM wave plays ~3 toll easier</b> before the wind firms up.</p><div class="sixty-picks"><span class="sixty-plabel">Angles</span><span class="pchip">Fleetwood: which one?</span><span class="pchip star">Clark / Taylor buy</span><span class="pchip">A. Fitzpatrick rebound</span><span class="pchip star">Scheffler @ +790</span><span class="pchip">AM draw edge</span></div></section>
 <section><div class="sec-head"><h2 class="font-display">Round 1 &mdash; How They Did It</h2></div><p class="lead">A four-way logjam at <b>&minus;5</b> &mdash; but the <i>how</i> splits them. The SG breakdown shows who built it on durable <b>ball-striking</b> (BS) vs the regressy <b>putter/short game</b> (Putt/ARG). Field averaged <b>+1.06</b>; defending champ <b>Scheffler sits T36 (+1)</b> after an off ball-striking day and the last-off draw.</p><div class="ch-note" style="margin:0 0 6px">R1 strokes-gained by category (green = gained); Long = 200+ irons &middot; Wave = Friday draw &middot; scroll for all 72</div><div class="t-wrap vscroll"><table><thead><tr><th class="l">#</th><th class="l">Player</th><th title="R1 to par">R1</th><th title="SG total">SG</th><th title="SG ball-striking">BS</th><th title="SG approach">App</th><th title="SG around-green">ARG</th><th title="SG putting">Putt</th><th title="SG long irons 200+">Long</th><th title="Friday wave">Fri</th></tr></thead><tbody><tr><td class="l dim num">1</td><td class="l name"><img class="hs" src="https://pga-tour-res.cloudinary.com/image/upload/c_fill,g_face:center,h_96,w_96,q_auto/headshots_30911.png" alt="" loading="lazy" onerror="this.style.display='none'">Tommy Fleetwood</td><td class="num" style="color:#34d399">-5</td><td class="num" style="background:rgba(16,185,129,0.50)"><span class="num">+6.1</span></td><td class="num" style="background:rgba(16,185,129,0.01)"><span class="num">+0.1</span></td><td class="num" style="background:rgba(239,68,68,0.24)"><span class="num">-1.4</span></td><td class="num" style="background:rgba(16,185,129,0.50)"><span class="num">+3.1</span></td><td class="num" style="background:rgba(16,185,129,0.49)"><span class="num">+2.9</span></td><td class="num" style="background:rgba(16,185,129,0.06)"><span class="num">+0.2</span></td><td class="num" style="color:#9fb1c9">PM</td></tr>
 <tr><td class="l dim num">2</td><td class="l name"><img class="hs" src="https://pga-tour-res.cloudinary.com/image/upload/c_fill,g_face:center,h_96,w_96,q_auto/headshots_39324.png" alt="" loading="lazy" onerror="this.style.display='none'">J.J. Spaun</td><td class="num" style="color:#34d399">-5</td><td class="num" style="background:rgba(16,185,129,0.50)"><span class="num">+6.0</span></td><td class="num" style="background:rgba(16,185,129,0.50)"><span class="num">+3.5</span></td><td class="num" style="background:rgba(16,185,129,0.40)"><span class="num">+2.4</span></td><td class="num" style="background:rgba(239,68,68,0.06)"><span class="num">-0.3</span></td><td class="num" style="background:rgba(16,185,129,0.48)"><span class="num">+2.9</span></td><td class="num" style="background:rgba(239,68,68,0.10)"><span class="num">-0.4</span></td><td class="num" style="color:#9fb1c9">PM</td></tr>
@@ -1722,7 +1722,14 @@
       document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
       btn.classList.add('active');
       var el = document.getElementById('tab-' + btn.dataset.tab);
-      if (el) el.classList.add('active');
+      if (el) {
+        el.classList.add('active');
+        // Reveal any scroll-animated (#tab-preview) elements immediately on
+        // switch — IntersectionObserver can miss the display:none->block flip
+        // on iOS Safari, which would otherwise leave the panel blank.
+        var rv = el.querySelectorAll('.reveal:not(.in)');
+        for (var ri = 0; ri < rv.length; ri++) rv[ri].classList.add('in');
+      }
       window.scrollTo(0, 0);
     });
   });
